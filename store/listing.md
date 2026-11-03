@@ -1,0 +1,67 @@
+# Google Play store listing – Taas Adda
+
+## App name (max 30)
+Taas Adda: Nepali Card Games
+
+## Short description (max 80)
+Call Break, Marriage, Teen Patti & more. Play bots offline or friends nearby.
+
+## Full description (max 4000)
+Taas Adda brings the card games played at every Nepali and Indian gathering to one beautiful 3D table.
+
+EIGHT GAMES
+• Call Break – bid your tricks, spades are trump
+• Marriage – 21 cards, three decks, maal, tiplu, alter, tunnela and dublee
+• Teen Patti – blind or seen, chaal, raise, sideshow and show
+• Flash – the Nepali way: Trial, Double Run, Run, Color, Jute
+• Kitti – split nine cards into three hands and win two shows
+• Kachuful (Judgement) – call exactly, trump rotates Kaali, Chukat, Phuli, Laal
+• Rummy – 13 cards, two decks and a cut joker
+• Dhumbal – shed sets and runs, then call Show
+
+PLAY ANYWHERE
+• Offline against smart computer players: Easy, Normal or Hard
+• Play with friends nearby over Bluetooth and Wi-Fi, no internet needed (Call Break now, more games coming)
+• Table chat and emoji reactions
+
+MADE FOR REAL TABLES
+• Realistic cards, felt and chips, with smooth animations
+• Rules screens for every game, plus options for common house rules
+• Four table colours, three card backs, four-colour deck, sound and speed settings
+
+SOS FOR SAFETY
+If something goes wrong, one tap alerts everyone at your table with your message and location, opens a text to your emergency contacts, or dials local emergency numbers for Nepal, India, Korea and more. Taas Adda does not contact emergency services for you.
+
+No ads. No accounts. No real money: chips are for fun only.
+
+## Category
+Games › Card
+
+## Tags to pick
+Card, Offline, Multiplayer, Casual
+
+## Contact details
+Email: (your developer email – required)
+Website: https://github.com/Sharma2040/taas-adda
+Privacy policy: https://sharma2040.github.io/taas-adda/privacy-policy.html
+
+## Content rating questionnaire (IARC) – answer honestly
+• Category: Game
+• Violence / sexuality / language / drugs: No
+• Simulated gambling: YES (Teen Patti, Flash, Kitti use pretend chips). No real-money gambling, nothing to buy.
+• Users can interact / exchange content: YES (chat with nearby players)
+• Shares user location with other users: YES (only the SOS feature, when the user chooses)
+• Digital purchases: No
+Expect a Teen / 12+ style rating because of simulated gambling.
+
+## Data safety form – suggested answers
+• Does the app collect or share user data? Data is not sent to the developer.
+  - Location: the app accesses precise location only when the user presses SOS, and sends it directly
+    to people the user chooses. Google treats user-initiated sharing like this as not "shared";
+    if unsure, declare "Location – precise: shared, optional, for app functionality".
+  - Personal info (player name) and messages (chat): sent only device-to-device at the user's request.
+• Is data encrypted in transit? Nearby Connections links are encrypted by Google Play services.
+• Can users request deletion? All data is on the device; uninstalling deletes it.
+
+## Target audience
+13+ (not designed for children). Do not opt into "Designed for Families".

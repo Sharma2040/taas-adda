@@ -21,6 +21,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
 
 import androidx.webkit.WebViewAssetLoader;
 
@@ -105,6 +107,19 @@ public class MainActivity extends Activity {
         nearby = new NearbyHub(this);
         web.addJavascriptInterface(new Bridge(), "TaasNative");
         web.loadUrl(START_URL);
+
+        // Android 13+ (and always when targeting Android 16): back goes through OnBackInvokedCallback.
+        if (Build.VERSION.SDK_INT >= 33) {
+            OnBackInvokedCallback cb = this::handleBack;
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(OnBackInvokedDispatcher.PRIORITY_DEFAULT, cb);
+        }
+    }
+
+    /** Let the game close dialogs first; leave the app only when it says so. */
+    void handleBack() {
+        web.evaluateJavascript("(window.__back&&window.__back())?'1':'0'", value -> {
+            if (!"\"1\"".equals(value)) finish();
+        });
     }
 
     @Override
@@ -116,10 +131,7 @@ public class MainActivity extends Activity {
     @SuppressWarnings("deprecation")
     @Override
     public void onBackPressed() {
-        // Let the game close dialogs first; exit only when it says so.
-        web.evaluateJavascript("(window.__back&&window.__back())?'1':'0'", value -> {
-            if (!"\"1\"".equals(value)) finish();
-        });
+        handleBack(); // Android 12 and older
     }
 
     // ---------------------------------------------------------------- helpers

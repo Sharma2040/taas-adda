@@ -4,19 +4,33 @@ plugins {
 
 android {
     namespace 'com.taasadda.app'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId 'com.taasadda.app'
         minSdk 24
-        targetSdk 35
-        versionCode 1
-        versionName '0.1.0'
+        targetSdk 36
+        versionCode((System.getenv('GITHUB_RUN_NUMBER') ?: '1') as Integer)
+        versionName '0.2.0'
+    }
+
+    // Release signing comes from GitHub secrets (see PUBLISHING.md). Never commit the keystore.
+    def ksFile = System.getenv('TAAS_KEYSTORE_FILE')
+    signingConfigs {
+        release {
+            if (ksFile) {
+                storeFile file(ksFile)
+                storePassword System.getenv('TAAS_KEYSTORE_PASSWORD')
+                keyAlias 'upload'
+                keyPassword System.getenv('TAAS_KEYSTORE_PASSWORD')
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            if (ksFile) signingConfig signingConfigs.release
         }
     }
 

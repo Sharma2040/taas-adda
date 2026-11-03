@@ -5,3 +5,8 @@ local.properties
 .idea/
 *.iml
 .DS_Store
+# signing keys must never be committed
+*.jks
+*.keystore
+taas-adda-upload-key*
+TAAS_KEYSTORE_*.txt

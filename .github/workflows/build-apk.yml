@@ -1,4 +1,4 @@
-name: Build Taas Adda APK
+name: Build Taas Adda
 
 on:
   push:
@@ -11,6 +11,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      HAS_KEY: ${{ secrets.TAAS_KEYSTORE_BASE64 != '' }}
     steps:
       - uses: actions/checkout@v5
 
@@ -19,24 +21,41 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Check Android SDK
-        run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          ls "$ANDROID_HOME/platforms" "$ANDROID_HOME/build-tools" | head -40
-          echo "sdk.dir=$ANDROID_HOME" > local.properties
+      - name: Point Gradle at the Android SDK
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
 
-      - name: Build debug APK
+      - name: Bundle fonts for offline play
+        run: python3 tools/bundle_fonts.py || echo "Font bundling skipped; the app falls back to system fonts."
+
+      - name: Build APK (for sharing directly)
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon --stacktrace
           cp app/build/outputs/apk/debug/app-debug.apk TaasAdda.apk
+
+      - name: Build signed App Bundle (for Google Play)
+        if: env.HAS_KEY == 'true'
+        env:
+          TAAS_KEYSTORE_PASSWORD: ${{ secrets.TAAS_KEYSTORE_PASSWORD }}
+        run: |
+          echo "${{ secrets.TAAS_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          export TAAS_KEYSTORE_FILE="$RUNNER_TEMP/upload.jks"
+          ./gradlew bundleRelease --no-daemon --stacktrace
+          cp app/build/outputs/bundle/release/app-release.aab TaasAdda-play.aab
+          rm -f "$RUNNER_TEMP/upload.jks"
 
       - uses: actions/upload-artifact@v4
         with:
           name: TaasAdda-apk
           path: TaasAdda.apk
 
-      - name: Publish as the latest release
+      - uses: actions/upload-artifact@v4
+        if: env.HAS_KEY == 'true'
+        with:
+          name: TaasAdda-play-bundle
+          path: TaasAdda-play.aab
+
+      - name: Publish the APK as the latest release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}

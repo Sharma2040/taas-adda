@@ -9,7 +9,7 @@ Eight South Asian card games (Call Break, Kachuful, Teen Patti, Flash, Kitti, Ma
 
 > SOS is a way to alert friends. It does not contact the police or an ambulance for you. If you are in danger, call emergency services.
 
-Version 0.1.0 · package `com.taasadda.app` · Android 7.0 (API 24) and newer.
+Version 0.2.0 · package `com.taasadda.app` · Android 7.0 (API 24) and newer.
 
 ---
 
@@ -45,7 +45,11 @@ The first time you host or join a nearby table, Android asks for **Nearby device
 4. The host taps **Start game**. Empty seats are played by bots.
 5. Use the chat button at the top for messages and emoji.
 
-## Publishing on Google Play (later)
+## Publishing on Google Play
+
+See **PUBLISHING.md** for the full step-by-step guide.
+
+### Summary
 
 You'll need a Google Play developer account (one‑time US$25), a signed **release** build (Android Studio: **Build → Generate Signed Bundle**), a privacy policy (the app uses location only for SOS and nearby play), and store screenshots. Bump `versionCode` in `app/build.gradle` for every upload.
 
