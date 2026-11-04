@@ -13,8 +13,12 @@ android {
         versionCode((System.getenv('GITHUB_RUN_NUMBER') ?: '1') as Integer)
         versionName '0.5.0'
         manifestPlaceholders = [admobAppId: project.property('ADMOB_APP_ID')]
-        buildConfigField 'String', 'ADMOB_REWARDED_ID', "\"${project.property('ADMOB_REWARDED_ID')}\""
-        buildConfigField 'String', 'ADMOB_INTERSTITIAL_ID', "\"${project.property('ADMOB_INTERSTITIAL_ID')}\""
+        def adsLive = project.property('ADMOB_LIVE').toString().toBoolean()
+        def rewardedId = adsLive ? project.property('ADMOB_REWARDED_ID') : project.property('ADMOB_TEST_REWARDED_ID')
+        def interstitialId = adsLive ? project.property('ADMOB_INTERSTITIAL_ID') : project.property('ADMOB_TEST_INTERSTITIAL_ID')
+        buildConfigField 'boolean', 'ADMOB_LIVE', "${adsLive}"
+        buildConfigField 'String', 'ADMOB_REWARDED_ID', "\"${rewardedId}\""
+        buildConfigField 'String', 'ADMOB_INTERSTITIAL_ID', "\"${interstitialId}\""
     }
 
     buildFeatures {

@@ -4,7 +4,7 @@ This is the full order of work to publish Taas Adda on Google Play and earn from
 
 **Plan on about 4 weeks.** Most of it is waiting: Google requires new personal accounts to run a 14-day closed test, and account checks take a few days each.
 
-> **Ads are built in, using Google's test ads** (they earn nothing). Before switching to your real AdMob IDs, make sure your legal route to earning in Korea is in place (for example a 체류자격 외 활동허가 permit on your D-2 visa; ask 1345 or your university's international office).
+> **Your AdMob IDs are in the app, but ads stay in test mode** (`ADMOB_LIVE=false` in `gradle.properties`): Google's test ads, no earnings, safe for testers. Before setting `ADMOB_LIVE=true`, make sure your legal route to earning in Korea is in place (for example a 체류자격 외 활동허가 permit on your D-2 visa; ask 1345 or your university's international office).
 
 | What | Where |
 |---|---|
