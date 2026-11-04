@@ -4,6 +4,8 @@ This is the full order of work to publish Taas Adda on Google Play and earn from
 
 **Plan on about 4 weeks.** Most of it is waiting: Google requires new personal accounts to run a 14-day closed test, and account checks take a few days each.
 
+> **Current plan: publish free, with no ads, first.** On a D-2 student visa, earning ad income in Korea may need permission from immigration. Skip step 3 (AdMob) and answer **No** to "contains ads" in step 5 until immigration (call 1345) confirms it's allowed, or until your visa or country changes. Ads can be added in a later update.
+
 | What | Where |
 |---|---|
 | Store text, rating and data-safety answers | `store/listing.md` |
