@@ -52,8 +52,9 @@ Card, Offline, Multiplayer, Casual
 
 ## Contact details
 Email: (your developer email – required)
-Website: https://github.com/Sharma2040/taas-adda
-Privacy policy: https://sharma2040.github.io/taas-adda/privacy-policy.html
+Website: https://sharma2040.github.io
+Privacy policy: https://sharma2040.github.io/privacy-policy.html
+Developer website (needed for AdMob app-ads.txt): https://sharma2040.github.io
 
 ## Content rating questionnaire (IARC) – answer honestly
 • Category: Game
