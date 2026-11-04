@@ -34,6 +34,7 @@ class NearbyHub {
     private final MainActivity act;
     private final ConnectionsClient client;
     private final Map<String, String> names = new HashMap<>();
+    private final Map<String, String> codes = new HashMap<>();
 
     NearbyHub(MainActivity activity) {
         act = activity;
@@ -68,6 +69,8 @@ class NearbyHub {
         @Override
         public void onConnectionInitiated(@NonNull String endpointId, @NonNull ConnectionInfo info) {
             names.put(endpointId, info.getEndpointName());
+            // Same 4-digit code appears on both phones; players compare it to make sure nobody is impersonating the table.
+            codes.put(endpointId, info.getAuthenticationDigits());
             client.acceptConnection(endpointId, payloads);
         }
 
@@ -75,7 +78,8 @@ class NearbyHub {
         public void onConnectionResult(@NonNull String endpointId, @NonNull ConnectionResolution result) {
             if (result.getStatus().isSuccess()) {
                 String n = names.get(endpointId);
-                emit("connected", "id", endpointId, "name", n != null ? n : "Player");
+                String c = codes.get(endpointId);
+                emit("connected", "id", endpointId, "name", n != null ? n : "Player", "code", c != null ? c : "");
             } else {
                 emit("connectFailed", "id", endpointId, "msg", String.valueOf(result.getStatus().getStatusMessage()));
             }
@@ -84,6 +88,7 @@ class NearbyHub {
         @Override
         public void onDisconnected(@NonNull String endpointId) {
             names.remove(endpointId);
+            codes.remove(endpointId);
             emit("disconnected", "id", endpointId);
         }
     };
@@ -124,6 +129,7 @@ class NearbyHub {
     }
 
     void send(String endpointId, String data) {
+        if (data == null || data.length() > 30000) return;
         client.sendPayload(endpointId, Payload.fromBytes(data.getBytes(StandardCharsets.UTF_8)));
     }
 
@@ -136,5 +142,6 @@ class NearbyHub {
         client.stopDiscovery();
         client.stopAllEndpoints();
         names.clear();
+        codes.clear();
     }
 }

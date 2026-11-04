@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-7fhzMGbGhp+bE8zRQsKjCet7kh8f+7fLxxgdpNknPMw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0d0a08">
+<meta name="referrer" content="no-referrer">
 <style>:root{color-scheme:dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head><body>
 <title>Taas Adda</title>
@@ -238,6 +240,7 @@ table.sc .neg{color:#e38a80}
 .ib{position:relative}.ib .dot{position:absolute;right:6px;top:6px;width:9px;height:9px;border-radius:50%;background:#e2564a;box-shadow:0 0 0 2px #140f0b}
 .ovl{position:absolute;inset:0;z-index:2800;display:grid;place-items:center;background:rgba(5,4,3,.6);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);padding:16px 0}
 .seatlist{display:flex;flex-direction:column;gap:6px}
+.seatrow.knock{border-color:var(--gold);margin-bottom:8px;flex-wrap:wrap}.code{font-variant-numeric:tabular-nums;letter-spacing:.15em;color:var(--gold);font-size:1.15em}
 .seatrow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
 .seatrow .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#1a120b;background:var(--av)}
 .seatrow span{flex:1;min-width:0}.seatrow small{color:var(--muted)}
@@ -567,9 +570,10 @@ class CallBreak{
     rows+=`<tr><td>This round</td>${this.players.map(p=>`<td>${p.tricks}/${p.bid}</td>`).join('')}</tr>`;
     rows+=`<tr class="tot"><td>Total</td>${tots.map(t=>`<td class="${final&&t===best?'best':''}">${t.toFixed(1)}</td>`).join('')}</tr>`;
     const tbl=`<div class="tbl"><table class="sc"><tr><th></th>${this.players.map(p=>`<th>${esc(p.name)}</th>`).join('')}</tr>${rows}</table></div>`;
-    if(!final){mpBroadcast({t:'modal',title:`Round ${this.round} scores`,body:tbl});await modal({title:`Round ${this.round} scores`,body:tbl,buttons:[{label:'Next round',value:1,primary:true}],wide:true});return null}
+    const sdata={head:['',...this.players.map(p=>p.name)],rows:[...Array(this.round).keys()].map(r=>[`Round ${r+1}`,...this.players.map(p=>p.scores[r].toFixed(1))]).concat([['This round',...this.players.map(p=>`${p.tricks}/${p.bid}`)],['Total',...tots.map(t=>t.toFixed(1))]])};
+    if(!final){mpBroadcast({t:'score',title:`Round ${this.round} scores`,table:sdata});await modal({title:`Round ${this.round} scores`,body:tbl,buttons:[{label:'Next round',value:1,primary:true}],wide:true});return null}
     const winners=this.players.filter((p,i)=>tots[i]===best);const me=winners.includes(this.players[0]);stat(this.key,me);sfx(me?'win':'lose');
-    mpBroadcast({t:'modal',title:`${esc(winners[0].name)} wins the match`,body:tbl});
+    mpBroadcast({t:'score',title:`${winners[0].name} wins the match`,table:sdata});
     return await modal({title:me?'You win the match!':`${esc(winners[0].name)} wins the match`,body:tbl,buttons:[{label:'Lobby',value:'lobby'},{label:'Play again',value:'again',primary:true}],wide:true})}
 }
 
@@ -1381,7 +1385,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#confirm').hidd
    ========================================================= */
 const NATIVE=typeof window.TaasNative!=='undefined';
 const MOCK=/[?&]mock\b/.test(location.search);
-const MP={on:false,role:null,net:null,seats:[],seat:0,inGame:false,screen:'',asks:{},chat:[],unread:0,found:{},hostName:'',rounds:5};
+const MP={pending:[],code:'',lastMsg:{},on:false,role:null,net:null,seats:[],seat:0,inGame:false,screen:'',asks:{},chat:[],unread:0,found:{},hostName:'',rounds:5};
 class Link{constructor(){this.h={}}on(e,f){(this.h[e]=this.h[e]||[]).push(f)}emit(e,d){(this.h[e]||[]).forEach(f=>{try{f(d)}catch(err){console.error(err)}})}}
 class NativeLink extends Link{
   host(name){TaasNative.startHost(name)}discover(name){TaasNative.startDiscovery(name)}stopDiscovery(){TaasNative.stopDiscovery()}
@@ -1392,8 +1396,8 @@ class MockLink extends Link{
   got(m){if(m.to&&m.to!==this.me)return;
     if(m.k==='adv'&&this.mode==='disc')this.emit('found',{id:m.from,name:m.name});
     else if(m.k==='who'&&this.mode==='host')this.post({k:'adv',name:this.name});
-    else if(m.k==='req'&&this.mode==='host'){this.peers.add(m.from);this.post({k:'ok',to:m.from,name:this.name});this.emit('connected',{id:m.from,name:m.name})}
-    else if(m.k==='ok'&&this.mode==='disc'){this.peers.add(m.from);this.emit('connected',{id:m.from,name:m.name})}
+    else if(m.k==='req'&&this.mode==='host'){this.peers.add(m.from);const code=String(1000+Math.floor(Math.random()*9000));this.post({k:'ok',to:m.from,name:this.name,code});this.emit('connected',{id:m.from,name:m.name,code})}
+    else if(m.k==='ok'&&this.mode==='disc'){this.peers.add(m.from);this.emit('connected',{id:m.from,name:m.name,code:m.code})}
     else if(m.k==='msg'&&this.peers.has(m.from))this.emit('message',{id:m.from,data:m.data});
     else if(m.k==='bye'&&this.peers.has(m.from)){this.peers.delete(m.from);this.emit('disconnected',{id:m.from})}}
   host(name){this.mode='host';this.name=name;this.post({k:'adv',name})}
@@ -1408,7 +1412,7 @@ window.__native=ev=>{if(!ev)return;if(ev.type==='location'){const cb=window.__lo
 function mpNet(){if(MP.net)return MP.net;const n=NATIVE?new NativeLink():new MockLink();MP.net=n;
   n.on('found',e=>{MP.found[e.id]=e.name;if(MP.screen==='join')mpRender()});
   n.on('lost',e=>{delete MP.found[e.id];if(MP.screen==='join')mpRender()});
-  n.on('connected',e=>mpConnected(e.id,e.name||'Player'));
+  n.on('connected',e=>mpConnected(e.id,e.name||'Player',e.code));
   n.on('disconnected',e=>mpDisconnected(e.id));
   n.on('connectFailed',()=>{if(MP.screen==='connecting'){MP.screen='join';MP.err='Couldn’t join that table. Try again.';mpRender()}});
   n.on('error',e=>{MP.err=/permission/i.test(e.msg||'')?'Taas Adda needs Bluetooth, Nearby devices and Location permission to connect phones.':'Nearby connection error: '+(e.msg||'unknown');mpRender()});
@@ -1426,24 +1430,32 @@ function mpHide(){$('#mp').hidden=true;MP.screen=''}
 function seatRows(){return`<div class="seatlist">${[0,1,2,3].map(i=>{const s=MP.seats[i];return`<div class="seatrow"><div class="av" style="--av:${s?(i===0?'#dcb565':AVC[(i+2)%AVC.length]):'#3a3029'}">${s?esc(s.name[0]||'?'):''}</div><span>${s?esc(s.name):'Open seat'}${MP.role==='client'&&i===MP.seat?' <small>· you</small>':''}${i===0?' <small>· host</small>':''}</span><small>${s?'':'bot plays'}</small></div>`}).join('')}</div>`}
 function mpRender(){const sh=$('#mpSheet');if($('#mp').hidden)return;const err=MP.err?`<p class="hint" style="color:#ffb4ab">${esc(MP.err)}</p>`:'';let h='';
   if(MP.screen==='entry')h=`<h3>Play with friends nearby</h3><div class="body"><p class="hint">Phones connect directly over Bluetooth and Wi-Fi. No internet needed. Everyone opens Taas Adda: one person hosts, the others join. Up to 4 players; empty seats are played by bots.</p><p class="hint">Game: <b>Call Break</b>. More games are coming to nearby play.</p><p class="hint">Your phone will ask for <b>Nearby devices</b> permission (or <b>Location</b> on Android 12 and older). Android needs it to find nearby phones over Bluetooth; Taas Adda doesn’t record or upload your location.</p>${err}</div><div class="btns"><button class="btn" data-a="close">Cancel</button><button class="btn" data-a="join">Join a table</button><button class="btn primary" data-a="host">Host a table</button></div>`;
-  else if(MP.screen==='host')h=`<h3>Your table · Call Break</h3><div class="body">${seatRows()}<p class="hint" style="margin-top:10px"><span class="spin"></span>Open for friends. They tap <b>Play with friends nearby → Join a table</b>.</p><div class="field" style="margin-top:8px"><span>Rounds</span>${segHTML('mprounds',[[3,'3'],[5,'5'],[7,'7']],MP.rounds)}</div>${err}</div><div class="btns"><button class="btn" data-a="leave">Close table</button><button class="btn" data-a="chat">Chat</button><button class="btn primary" data-a="start">Start game</button></div>`;
+  else if(MP.screen==='host')h=`<h3>Your table · Call Break</h3><div class="body">${MP.pending.map(p=>`<div class="seatrow knock"><span><b>${esc(p.name)}</b> wants to join${p.code?` · code <b class="code">${esc(p.code)}</b>`:''}<br><small>${p.code?'Let them in only if their screen shows the same code.':'Let them in only if you know them.'}</small></span><button class="btn" data-a="deny" data-id="${esc(p.id)}">Decline</button><button class="btn primary" data-a="admit" data-id="${esc(p.id)}">Let in</button></div>`).join('')}${seatRows()}<p class="hint" style="margin-top:10px"><span class="spin"></span>Open for friends. They tap <b>Play with friends nearby → Join a table</b>.</p><div class="field" style="margin-top:8px"><span>Rounds</span>${segHTML('mprounds',[[3,'3'],[5,'5'],[7,'7']],MP.rounds)}</div>${err}</div><div class="btns"><button class="btn" data-a="leave">Close table</button><button class="btn" data-a="chat">Chat</button><button class="btn primary" data-a="start">Start game</button></div>`;
   else if(MP.screen==='join'){const ids=Object.keys(MP.found);h=`<h3>Tables nearby</h3><div class="body">${ids.length?`<div class="tablelist">${ids.map(id=>`<button class="btn" data-a="pick" data-id="${esc(id)}"><span>${esc(MP.found[id])}</span><small>Join</small></button>`).join('')}</div>`:'<p class="hint"><span class="spin"></span>Looking for tables… Keep both phones close, with Bluetooth on.</p>'}${err}</div><div class="btns"><button class="btn" data-a="leave">Cancel</button></div>`}
   else if(MP.screen==='connecting')h=`<h3>Joining…</h3><div class="body"><p class="hint"><span class="spin"></span>Connecting to the table.</p></div><div class="btns"><button class="btn" data-a="leave">Cancel</button></div>`;
+  else if(MP.screen==='knock')h=`<h3>Asking to join</h3><div class="body"><p class="hint"><span class="spin"></span>Waiting for the host to let you in.</p>${MP.code?`<p class="hint">Your code is <b class="code">${esc(MP.code)}</b>. The host sees the same code if you’re connected to the right phone.</p>`:''}</div><div class="btns"><button class="btn" data-a="leave">Cancel</button></div>`;
   else if(MP.screen==='wait')h=`<h3>${esc(MP.hostName)}’s table</h3><div class="body">${seatRows()}<p class="hint" style="margin-top:10px"><span class="spin"></span>Waiting for ${esc(MP.hostName)} to start Call Break (${MP.rounds} rounds).</p></div><div class="btns"><button class="btn" data-a="leave">Leave table</button><button class="btn primary" data-a="chat">Chat</button></div>`;
   sh.className='sheet';sh.innerHTML=h;
   wireSegs(sh,(f,v)=>{if(f==='mprounds'){MP.rounds=+v;mpLobbyMsg()}});
   sh.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{ac();const a=b.dataset.a;
     if(a==='close')mpHide();else if(a==='host')mpHost();else if(a==='join')mpJoin();else if(a==='leave')mpLeave();else if(a==='start')mpStart();else if(a==='chat')chatOpen();
+    else if(a==='admit'||a==='deny')mpAdmit(b.dataset.id,a==='admit');
     else if(a==='pick'){MP.screen='connecting';mpRender();MP.hostName=MP.found[b.dataset.id];mpNet().connect(b.dataset.id,S.name||'Player')}})}
-function mpHost(){const n=mpNet();Object.assign(MP,{on:true,role:'host',seats:[{name:S.name||'You',id:null},null,null,null],seat:0,chat:[],unread:0,inGame:false});n.host(`${S.name||'Player'}’s table`);applyMpUi();mpShow('host');chatSys('You opened the table.')}
+function mpHost(){const n=mpNet();Object.assign(MP,{pending:[],lastMsg:{},on:true,role:'host',seats:[{name:S.name||'You',id:null},null,null,null],seat:0,chat:[],unread:0,inGame:false});n.host(`${S.name||'Player'}’s table`);applyMpUi();mpShow('host');chatSys('You opened the table.')}
 function mpJoin(){const n=mpNet();Object.assign(MP,{on:false,role:'client',found:{},chat:[],unread:0,inGame:false});n.discover(S.name||'Player');mpShow('join')}
-function mpConnected(id,name){
+const cleanName=n=>String(n==null?'':n).replace(/[\u0000-\u001f\u007f<>]/g,'').trim().slice(0,14)||'Player';
+const cleanCode=c=>/^\d{4}$/.test(String(c))?String(c):'';
+function mpConnected(id,name,code){
   if(MP.role==='host'){if(MP.inGame){MP.net.send(id,{t:'end',reason:'The game has already started.'});setTimeout(()=>MP.net.drop(id),300);return}
-    const i=MP.seats.findIndex((s,k)=>k>0&&!s);if(i<0){MP.net.send(id,{t:'end',reason:'The table is full.'});setTimeout(()=>MP.net.drop(id),300);return}
-    MP.seats[i]={name:String(name).slice(0,14),id};mpLobbyMsg();chatSys(`${name} joined.`,true);sfx('tick');mpRender()}
-  else{MP.on=true;MP.hostId=id;MP.net.stopDiscovery();applyMpUi();MP.screen='wait';sfx('tick')}}
+    if(MP.seats.filter((s,k)=>k>0&&s).length+MP.pending.length>=3){MP.net.send(id,{t:'end',reason:'The table is full.'});setTimeout(()=>MP.net.drop(id),300);return}
+    MP.pending.push({id,name:cleanName(name),code:cleanCode(code)});sfx('tick');if(MP.screen==='host')mpRender()}
+  else{MP.on=true;MP.hostId=id;MP.code=cleanCode(code);MP.net.stopDiscovery();applyMpUi();MP.screen='knock';mpRender();sfx('tick')}}
+function mpAdmit(id,ok){const k=MP.pending.findIndex(p=>p.id===id);if(k<0)return;const p=MP.pending.splice(k,1)[0];
+  if(!ok){MP.net.send(id,{t:'end',reason:'The host didn’t let you in.'});setTimeout(()=>MP.net.drop(id),300);mpRender();return}
+  const i=MP.seats.findIndex((s,j)=>j>0&&!s);if(i<0){MP.net.send(id,{t:'end',reason:'The table is full.'});setTimeout(()=>MP.net.drop(id),300);mpRender();return}
+  MP.seats[i]={name:p.name,id};mpLobbyMsg();chatSys(`${p.name} joined.`,true);mpRender()}
 function mpDisconnected(id){
-  if(MP.role==='host'){const i=MP.seats.findIndex(s=>s&&s.id===id);if(i<0)return;const nm=MP.seats[i].name;MP.seats[i]=null;chatSys(`${nm} left.`,true);
+  if(MP.role==='host'){const pk=MP.pending.findIndex(p=>p.id===id);if(pk>=0){MP.pending.splice(pk,1);mpRender();return}const i=MP.seats.findIndex(s=>s&&s.id===id);if(i<0)return;const nm=MP.seats[i].name;MP.seats[i]=null;chatSys(`${nm} left.`,true);
     if(MP.inGame&&G&&G.players&&G.players[i]){const p=G.players[i];p.remote=null;p.bot=true;p.name=nm+' (bot)';const r=MP.asks[i];if(r){delete MP.asks[i];r('__bot')}render()}else{mpLobbyMsg();mpRender()}}
   else if(id===MP.hostId)mpLeave('The host closed the table.')}
 function mpStart(){if(MP.role!=='host')return;MP.inGame=true;mpHide();
@@ -1451,26 +1463,38 @@ function mpStart(){if(MP.role!=='host')return;MP.inGame=true;mpHide();
   startGame('callbreak',{rounds:MP.rounds,seats:MP.seats.map(x=>x&&{name:x.name,id:x.id})})}
 function mpBackToRoom(){MP.inGame=false;MP.asks={};toLobby();mpLobbyMsg();mpShow('host')}
 function mpLeave(reason){const n=MP.net;if(n){if(MP.role==='host')mpBroadcast({t:'end',reason:`${S.name} closed the table.`});setTimeout(()=>n.stop(),200)}
-  Object.assign(MP,{on:false,role:null,seats:[],inGame:false,asks:{},hostId:null,found:{}});mpHide();chatClose();applyMpUi();toLobby();
+  Object.assign(MP,{on:false,role:null,seats:[],inGame:false,asks:{},hostId:null,found:{},pending:[],code:''});mpHide();chatClose();applyMpUi();toLobby();
   if(reason)modal({title:'Table closed',body:`<p>${esc(reason)}</p>`,buttons:[{label:'OK',value:1,primary:true}]}).catch(()=>{})}
-function mpMessage(id,data){let m;try{m=JSON.parse(data)}catch(e){return}
+const CARD_RE=/^(10|[2-9JQKA])[SHCD]$/;
+const MAP_RE=/^https:\/\/maps\.google\.com\/\?q=-?\d{1,2}\.\d{1,7},-?\d{1,3}\.\d{1,7}$/;
+const cleanText=(t,n)=>String(t==null?'':t).replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g,'').slice(0,n);
+const cleanLink=l=>MAP_RE.test(String(l||''))?String(l):'';
+function tooSoon(key,ms){const now=Date.now();if(MP.lastMsg[key]&&now-MP.lastMsg[key]<ms)return true;MP.lastMsg[key]=now;return false}
+function mpMessage(id,data){if(typeof data!=='string'||data.length>32768)return;let m;try{m=JSON.parse(data)}catch(e){return}if(!m||typeof m!=='object')return;
   if(MP.role==='host'){const seat=MP.seats.findIndex(s=>s&&s.id===id);if(seat<0)return;const nm=MP.seats[seat].name;
-    if(m.t==='act'){const r=MP.asks[seat];if(r){delete MP.asks[seat];r(m.v)}}
-    else if(m.t==='chat')chatAdd({name:nm,seat,text:String(m.text||'').slice(0,200)},true);
-    else if(m.t==='emo')emoShow(seat,String(m.e||'').slice(0,4),true);
-    else if(m.t==='sos')sosReceive({name:nm,seat,text:String(m.text||'').slice(0,300),link:String(m.link||'').slice(0,120),time:Date.now()},true);
+    if(m.t==='act'){const r=MP.asks[seat];if(r&&(typeof m.v==='string'||typeof m.v==='number')){delete MP.asks[seat];r(m.v)}}
+    else if(m.t==='chat'){const t=cleanText(m.text,200).trim();if(t&&!tooSoon('c'+seat,700))chatAdd({name:nm,seat,text:t},true)}
+    else if(m.t==='emo'){if(EMOJI.includes(m.e)&&!tooSoon('e'+seat,600))emoShow(seat,m.e,true)}
+    else if(m.t==='sos'){if(!tooSoon('s'+seat,20000))sosReceive({name:nm,seat,text:cleanText(m.text,300)||'I need help.',link:cleanLink(m.link),time:Date.now()},true)}
     return}
+  if(id!==MP.hostId)return;
   switch(m.t){
-    case'lobby':MP.seats=m.seats;MP.seat=m.you;MP.hostName=m.host;MP.rounds=m.rounds;if(MP.inGame){MP.inGame=false;stopGame();$('#lobby').hidden=false;['#bMenu','#ttl','#bRules'].forEach(s=>$(s).hidden=true)}mpShow('wait');break;
-    case'start':mpClientStart(m);break;
-    case'view':if(G&&G.remote){G.setView(m.v);render()}break;
+    case'lobby':if(!Array.isArray(m.seats)||m.seats.length!==4||![1,2,3].includes(m.you))return;MP.seats=m.seats.map(x=>x&&{name:cleanName(x.name)});MP.seat=m.you;MP.hostName=cleanName(m.host);MP.rounds=[3,5,7].includes(m.rounds)?m.rounds:5;if(MP.inGame){MP.inGame=false;stopGame();$('#lobby').hidden=false;['#bMenu','#ttl','#bRules'].forEach(s=>$(s).hidden=true)}mpShow('wait');break;
+    case'start':if(m.n===4&&[1,2,3].includes(m.seat)&&Array.isArray(m.seats)&&m.seats.length===4)mpClientStart({seat:m.seat,n:4,seats:m.seats.map(x=>x&&{name:cleanName(x.name)}),rounds:[3,5,7].includes(m.rounds)?m.rounds:5});break;
+    case'view':if(G&&G.remote){const v=cleanView(m.v);if(v){G.setView(v);render()}}break;
     case'ask':clientAsk(m.q);break;
-    case'bub':if(G&&G.remote)bubble(mpLocal(m.seat),m.text,m.ms,true);break;
-    case'modal':closeModal();modal({title:m.title,body:m.body,buttons:[{label:'OK',value:1,primary:true}],wide:true}).catch(()=>{});break;
-    case'chat':chatAdd(m,false);break;
-    case'emo':emoShow(m.seat,m.e,false);break;
-    case'sos':sosReceive(m,false);break;
-    case'end':mpLeave(m.reason||'The table was closed.');break}}
+    case'bub':if(G&&G.remote&&[0,1,2,3].includes(m.seat))bubble(mpLocal(m.seat),cleanText(m.text,40),clamp(+m.ms||1500,300,4000),true);break;
+    case'score':closeModal();modal({title:esc(cleanText(m.title,60)),body:scoreTable(m.table),buttons:[{label:'OK',value:1,primary:true}],wide:true}).catch(()=>{});break;
+    case'chat':if(m.sys)chatAdd({sys:true,text:cleanText(m.text,120)},false);else if([0,1,2,3].includes(m.seat))chatAdd({name:cleanName(m.name),seat:m.seat,text:cleanText(m.text,200)},false);break;
+    case'emo':if(EMOJI.includes(m.e)&&[0,1,2,3].includes(m.seat))emoShow(m.seat,m.e,false);break;
+    case'sos':if([0,1,2,3].includes(m.seat))sosReceive({name:cleanName(m.name),seat:m.seat,text:cleanText(m.text,300),link:cleanLink(m.link)},false);break;
+    case'end':mpLeave(cleanText(m.reason,120)||'The table was closed.');break}}
+function scoreTable(t){if(!t||!Array.isArray(t.head)||!Array.isArray(t.rows))return'';const cell=x=>esc(cleanText(x,24));
+  return`<div class="tbl"><table class="sc"><tr>${t.head.slice(0,5).map(h=>`<th>${cell(h)}</th>`).join('')}</tr>${t.rows.slice(0,12).map((r,i,a)=>Array.isArray(r)?`<tr${i===a.length-1?' class="tot"':''}>${r.slice(0,5).map(c=>`<td>${cell(c)}</td>`).join('')}</tr>`:'').join('')}</table></div>`}
+function cleanView(v){try{if(!v||!Array.isArray(v.players)||v.players.length!==4)return null;const ids=a=>Array.isArray(a)?a.filter(x=>CARD_RE.test(x)).slice(0,52):[];
+  return{round:clamp(v.round|0,0,7),rounds:clamp(v.rounds|0,1,7),dealer:clamp(v.dealer|0,0,3),cur:clamp(v.cur|0,-1,3),phase:['bid','play','deal'].includes(v.phase)?v.phase:'',glow:CARD_RE.test(v.glow)?v.glow:null,pile:clamp(v.pile|0,0,52),
+    players:v.players.map(p=>({name:cleanName(p&&p.name),color:/^#[0-9a-f]{6}$/i.test(p&&p.color)?p.color:'#888888',bid:clamp((p&&p.bid)|0,0,13),tricks:clamp((p&&p.tricks)|0,0,13),scores:Array.isArray(p&&p.scores)?p.scores.slice(0,7).map(x=>Number.isFinite(+x)?+x:0):[],hc:clamp((p&&p.hc)|0,0,13),won:ids(p&&p.won)})),
+    hand:ids(v.hand).slice(0,13),trick:Array.isArray(v.trick)?v.trick.slice(0,4).filter(t=>t&&[0,1,2,3].includes(t.p)&&CARD_RE.test(t.id)).map(t=>({p:t.p,id:t.id})):[]}}catch(e){return null}}
 
 /* --- client-side game view --- */
 const CARD_BY_ID=Object.fromEntries(newDeck().map(c=>[c.id,c]));const GHOSTS={};
@@ -1498,7 +1522,7 @@ class RemoteCB{
 }
 function mpClientStart(m){stopGame();closeModal();mpHide();MP.inGame=true;MP.seat=m.seat;$('#lobby').hidden=true;['#bMenu','#ttl','#bRules'].forEach(s=>$(s).hidden=false);
   G=new RemoteCB(m.seat,m.n,m.seats,m.rounds);$('#tTitle').textContent=G.title;const pr=G.print();$('#print').innerHTML=`${esc(pr[0])}<small>${esc(pr[1])}</small>`;buildSeats();lastCenter='';render()}
-function clientAsk(q){if(!G||!G.remote)return;
+function clientAsk(q){if(!G||!G.remote||!q)return;q.sug=clamp(Number(q.sug)|0,1,8);if(q.legal)q.legal=Array.isArray(q.legal)?q.legal.filter(x=>CARD_RE.test(x)):[];
   if(q.k==='bid'){setActions([1,2,3,4,5,6,7,8].map(v=>({label:String(v),value:v,kind:'bid'+(v===q.sug?' sug':'')})),{center:true,title:'Your bid',hint:`How many tricks will you take? Suggested: ${q.sug}`});
     waitHuman().then(v=>{setActions([]);mpSend({t:'act',v})}).catch(()=>{})}
   else if(q.k==='play'){G.legalSet=new Set(q.legal);msg(q.lead?'Your lead: play any card':'Your turn');sfx('tick');render()}}
@@ -1557,12 +1581,12 @@ async function sosSend(kind){const st=$('#sosStatus');const text=($('#sosText').
     st.textContent='Your messaging app is open with the SOS message. Press send there.'}}
 let sirenT=null;
 function siren(sec){const a=ac();if(!a)return;let t=a.currentTime;for(let k=0;k<sec*2;k++){const o=a.createOscillator(),g=a.createGain();o.type='sawtooth';o.frequency.setValueAtTime(700,t);o.frequency.linearRampToValueAtTime(1300,t+.45);g.gain.setValueAtTime(.08,t);g.gain.linearRampToValueAtTime(.0001,t+.5);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.5);t+=.5}}
-function sosReceive(m,relay){if(relay)mpBroadcast(Object.assign({t:'sos'},m));
+function sosReceive(m,relay){m.link=cleanLink(m.link);if(relay)mpBroadcast(Object.assign({t:'sos'},m));
   const mine=(MP.role==='host'&&m.seat===0)||(MP.role==='client'&&m.seat===MP.seat);if(mine)return;
   chatPush({name:m.name,text:'🚨 SOS: '+m.text+(m.link?' '+m.link:''),sos:true});
   $('#sosBox').innerHTML=`<div style="font-size:54px">🚨</div><h2>${esc(m.name)} needs help</h2><p>“${esc(m.text)}”</p>${m.link?`<p style="font-size:13.5px;opacity:.9">Location: <span style="-webkit-user-select:text;user-select:text">${esc(m.link)}</span></p><button class="btn primary" id="sosMap">Open location in Maps</button>`:'<p style="font-size:13.5px;opacity:.85">No location was shared.</p>'}<button class="btn" id="sosReply">Tell them I’m coming</button><button class="btn" id="sosDismiss">Dismiss</button>`;
   $('#sosAlert').hidden=false;if(NATIVE)try{TaasNative.vibrate(2500)}catch(e){}else if(navigator.vibrate)navigator.vibrate([500,200,500,200,800]);siren(4);
-  if($('#sosMap'))$('#sosMap').onclick=()=>openExt(m.link);
+  if($('#sosMap'))$('#sosMap').onclick=()=>{if(cleanLink(m.link))openExt(m.link)};
   $('#sosReply').onclick=()=>{chatSend(`I saw your SOS, ${m.name}. I’m on my way / calling for help.`);$('#sosAlert').hidden=true};
   $('#sosDismiss').onclick=()=>{$('#sosAlert').hidden=true}}
 $('#bSos').onclick=()=>{ac();sosOpen()};

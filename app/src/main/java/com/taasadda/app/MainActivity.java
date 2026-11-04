@@ -83,6 +83,12 @@ public class MainActivity extends Activity {
         s.setMediaPlaybackRequiresUserGesture(false);
         s.setAllowFileAccess(false);
         s.setAllowContentAccess(false);
+        s.setGeolocationEnabled(false);              // location only through the SOS bridge
+        s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        s.setSupportMultipleWindows(false);
+        s.setJavaScriptCanOpenWindowsAutomatically(false);
+        s.setSaveFormData(false);
+        WebView.setWebContentsDebuggingEnabled(false);
 
         final WebViewAssetLoader loader = new WebViewAssetLoader.Builder()
                 .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
@@ -97,8 +103,8 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 Uri u = request.getUrl();
-                if ("appassets.androidplatform.net".equals(u.getHost())) return false;
-                openExternal(u);
+                if ("https".equals(u.getScheme()) && "appassets.androidplatform.net".equals(u.getHost())) return false;
+                if ("https".equals(u.getScheme())) openExternal(u); // never open javascript:, intent:, file: or other schemes
                 return true;
             }
         });
@@ -152,6 +158,7 @@ public class MainActivity extends Activity {
     }
 
     void openExternal(Uri u) {
+        if (u == null || !"https".equals(u.getScheme())) return;
         try {
             Intent i = new Intent(Intent.ACTION_VIEW, u);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -279,6 +286,7 @@ public class MainActivity extends Activity {
         /** Opens the phone app with the number filled in. The person presses call. */
         @JavascriptInterface
         public void dial(final String number) {
+            if (number == null || !number.matches("[0-9+]{2,15}")) return;
             runOnUiThread(() -> {
                 try {
                     Intent i = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
@@ -291,6 +299,7 @@ public class MainActivity extends Activity {
         /** Opens the messaging app with recipients and text filled in. The person presses send. */
         @JavascriptInterface
         public void sms(final String numbers, final String body) {
+            if (numbers == null || !numbers.matches("[0-9+,]{3,80}") || body == null || body.length() > 500) return;
             runOnUiThread(() -> {
                 try {
                     String sep = "samsung".equalsIgnoreCase(Build.MANUFACTURER) ? "," : ";";
@@ -305,6 +314,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void share(final String text) {
+            if (text == null || text.length() > 500) return;
             runOnUiThread(() -> {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");
@@ -320,6 +330,7 @@ public class MainActivity extends Activity {
 
         @JavascriptInterface
         public void vibrate(final int ms) {
+            if (ms < 0 || ms > 5000) return;
             Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
             if (v == null) return;
             if (Build.VERSION.SDK_INT >= 26) {

@@ -27,6 +27,9 @@ jobs:
       - name: Bundle fonts for offline play
         run: python3 tools/bundle_fonts.py || echo "Font bundling skipped; the app falls back to system fonts."
 
+      - name: Lock down the page (Content Security Policy)
+        run: python3 tools/add_csp.py
+
       - name: Build APK (for sharing directly)
         run: |
           chmod +x gradlew
