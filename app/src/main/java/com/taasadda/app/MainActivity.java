@@ -328,6 +328,16 @@ public class MainActivity extends Activity {
             runOnUiThread(() -> openExternal(Uri.parse(url)));
         }
 
+        /** Short tap feedback for turns, wins and rewards. */
+        @JavascriptInterface
+        public void haptic(final int ms) {
+            if (ms < 5 || ms > 200) return;
+            Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            if (v == null) return;
+            if (Build.VERSION.SDK_INT >= 26) v.vibrate(VibrationEffect.createOneShot(ms, VibrationEffect.DEFAULT_AMPLITUDE));
+            else v.vibrate(ms);
+        }
+
         @JavascriptInterface
         public void vibrate(final int ms) {
             if (ms < 0 || ms > 5000) return;

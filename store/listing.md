@@ -4,7 +4,7 @@
 Taas Adda: Nepali Card Games
 
 ## Short description (max 80)
-Call Break, Marriage, Teen Patti & more. Play bots offline or friends nearby.
+Call Break, Marriage, Teen Patti & more in English, नेपाली, हिन्दी. Offline.
 
 ## Full description (max 4000)
 Taas Adda brings the card games played at every Nepali and Indian gathering to one beautiful 3D table.
@@ -24,8 +24,18 @@ PLAY ANYWHERE
 • Play with friends nearby over Bluetooth and Wi-Fi, no internet needed (Call Break now, more games coming)
 • Table chat and emoji reactions
 
+YOUR LANGUAGE
+• Play in English, नेपाली or हिन्दी
+
+LEVEL UP EVERY DAY
+• Daily bonus that grows for 7 days in a row
+• Three new challenges every day
+• Achievements, levels and a profile with your stats
+• Earn coins by playing and unlock new tables and card backs, including a Dashain & Tihar festival table
+• Learn mode: a quick guide for each game and a 💡 hint button
+
 MADE FOR REAL TABLES
-• Realistic cards, felt and chips, with smooth animations
+• Crisp, realistic cards with large corners, real court cards, felt and chips
 • Rules screens for every game, plus options for common house rules
 • Four table colours, three card backs, four-colour deck, sound and speed settings
 

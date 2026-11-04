@@ -5,11 +5,14 @@ Eight South Asian card games (Call Break, Kachuful, Teen Patti, Flash, Kitti, Ma
 - **Offline:** play against computer players, no internet needed.
 - **Play with friends nearby:** phones connect over Bluetooth and Wi‑Fi (Google Nearby Connections). No internet or SIM needed. Up to 4 players; bots fill empty seats. Call Break is available now.
 - **Table chat and emoji reactions** while playing nearby.
+- **English, Nepali and Hindi.** Change it in Settings → Language.
+- **Progress:** levels, coins, a daily bonus, three daily challenges, achievements, and a shop with new tables and card backs. All stored on the phone.
+- **Learn mode:** a short guide the first time you open each game, and a 💡 hint button that suggests a move.
 - **SOS:** alert everyone at your table, text your emergency contacts with your GPS location, and one‑tap dialing of local emergency numbers (Nepal, India, Korea, USA/Canada, Europe).
 
 > SOS is a way to alert friends. It does not contact the police or an ambulance for you. If you are in danger, call emergency services.
 
-Version 0.2.0 · package `com.taasadda.app` · Android 7.0 (API 24) and newer.
+Version 0.3.0 · package `com.taasadda.app` · Android 7.0 (API 24) and newer.
 
 ---
 
