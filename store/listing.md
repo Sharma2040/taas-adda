@@ -42,7 +42,7 @@ MADE FOR REAL TABLES
 SOS FOR SAFETY
 If something goes wrong, one tap alerts everyone at your table with your message and location, opens a text to your emergency contacts, or dials local emergency numbers for Nepal, India, Korea and more. Taas Adda does not contact emergency services for you.
 
-No ads. No accounts. No real money: chips are for fun only.
+Free to play, with optional ads. No accounts. No real money: chips and coins are for fun only and can't be bought or cashed out.
 
 ## Category
 Games › Card
@@ -62,11 +62,20 @@ Developer website (needed for AdMob app-ads.txt): https://sharma2040.github.io
 • Simulated gambling: YES (Teen Patti, Flash, Kitti use pretend chips). No real-money gambling, nothing to buy.
 • Users can interact / exchange content: YES (chat with nearby players)
 • Shares user location with other users: YES (only the SOS feature, when the user chooses)
-• Digital purchases: No
+• Digital purchases: No (until "Remove ads" is added)
+• Contains ads: YES
 Expect a Teen / 12+ style rating because of simulated gambling.
 
 ## Data safety form – suggested answers
-• Does the app collect or share user data? Data is not sent to the developer.
+• Does the app collect or share user data? YES, through the Google AdMob SDK (nothing is sent to the developer).
+  Declare these as COLLECTED and SHARED, for "Advertising or marketing", "Analytics" and "Fraud prevention, security":
+  - Device or other IDs (advertising ID)
+  - Location – approximate (from IP address)
+  - App activity – app interactions (ad interactions)
+  - App info and performance – crash logs and diagnostics
+  Collection is required for ads (not optional), processed by Google. Check AdMob's current data-disclosure help page
+  ("Google Play's data disclosure requirements" in AdMob Help) before submitting, as Google updates it.
+• Data handled by the game itself:
   - Location: the app accesses precise location only when the user presses SOS, and sends it directly
     to people the user chooses. Google treats user-initiated sharing like this as not "shared";
     if unsure, declare "Location – precise: shared, optional, for app functionality".

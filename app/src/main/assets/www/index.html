@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-9Lpv0o73uwYxcop4Y7kqMY+Oz2vV/aptS0VhGKpH5Zk='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-vMcUnS+1607zTGIXwV4/cjsqe44+lFaltQd0wiLAfs4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0d0a08">
 <meta name="referrer" content="no-referrer">
@@ -398,6 +398,7 @@ table.sc .neg{color:#e38a80}
 .sback{height:66px;display:grid;place-items:center}
 .sback .card.static{position:relative}
 .sheet .body h4{margin:16px 0 8px}
+.freec{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;border:1px solid rgba(220,181,101,.45);background:rgba(220,181,101,.08);margin-bottom:6px}.freec .fci{font-size:24px}.freec .fct{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.freec small{color:var(--muted);font-size:12px}.freec .btn{min-width:0}
 .guide{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5}.guide li::marker{color:var(--gold);font-weight:700}
 @media (max-width:560px){.pinfo{display:none}.pchip{padding:3px}.drow{gap:4px}.dday b{font-size:13px}.pstats b{font-size:15px}}
 @media (max-width:440px){#bSound{display:none}#top{gap:7px}}
@@ -694,7 +695,7 @@ I18N={
 'Location:':['स्थान:','लोकेशन:'],'Open location in Maps':['नक्सामा स्थान खोल्नुहोस्','मैप में लोकेशन खोलें'],'No location was shared.':['स्थान पठाइएको छैन।','लोकेशन साझा नहीं की गई।'],
 'Tell them I’m coming':['म आउँदैछु भन्नुहोस्','बताएँ कि मैं आ रहा हूँ'],'Dismiss':['हटाउनुहोस्','हटाएँ'],
 'Something went wrong:':['केही गडबड भयो:','कुछ गड़बड़ हुई:'],
-'Victory!':['जित!','जीत!'],'Good game':['राम्रो खेल','अच्छा खेल'],'Tap to continue':['अगाडि बढ्न थिच्नुहोस्','आगे बढ़ने के लिए दबाएँ'],'XP':['XP','XP'],
+'Victory!':['जित!','जीत!'],'Free coins':['निःशुल्क सिक्का','मुफ़्त सिक्के'],'Watch ad':['विज्ञापन हेर्नुहोस्','विज्ञापन देखें'],'Come back tomorrow for more free coins.':['थप निःशुल्क सिक्काका लागि भोलि फर्कनुहोस्।','और मुफ़्त सिक्कों के लिए कल आएँ।'],'Ad not ready yet. Try again in a minute.':['विज्ञापन अझै तयार छैन। एक मिनेटपछि फेरि प्रयास गर्नुहोस्।','विज्ञापन अभी तैयार नहीं है। एक मिनट बाद फिर कोशिश करें।'],'Ads and privacy':['विज्ञापन र गोपनीयता','विज्ञापन और गोपनीयता'],'Privacy choices':['गोपनीयता विकल्प','गोपनीयता विकल्प'],'Good game':['राम्रो खेल','अच्छा खेल'],'Tap to continue':['अगाडि बढ्न थिच्नुहोस्','आगे बढ़ने के लिए दबाएँ'],'XP':['XP','XP'],
 'Continue':['जारी राख्नुहोस्','जारी रखें'],'Play again with your last settings':['पछिल्लो सेटिङमा फेरि खेल्नुहोस्','पिछली सेटिंग्स के साथ फिर खेलें']
 };
 I18P=[
@@ -749,7 +750,7 @@ I18P=[
 [/^Maal was (.+)\. Each player gets (\d) × their maal − all maal \((-?\d+)\)\. The winner collects 3 from players who saw the maal and 10 from those who didn’t, plus 5 each for going out with eight dublees\.$/,'माल {1} थियो। हरेकले {2} × आफ्नो माल − सबैको माल ({3}) पाउँछ। जित्नेले माल हेर्नेबाट 3 र नहेर्नेबाट 10 लिन्छ, आठ डब्लीले सकेकाले थप 5 पनि।','माल {1} था। हर खिलाड़ी को {2} × अपना माल − सबका माल ({3}) मिलता है। विजेता माल देखने वालों से 3 और न देखने वालों से 10 लेता है, आठ डबली से खत्म करने पर 5 और।'],
 [/^Maal was (.+)\. Each player gets (\d) × their maal − all maal \((-?\d+)\)\. The winner collects 3 from players who saw the maal and 10 from those who didn’t\.$/,'माल {1} थियो। हरेकले {2} × आफ्नो माल − सबैको माल ({3}) पाउँछ। जित्नेले माल हेर्नेबाट 3 र नहेर्नेबाट 10 लिन्छ।','माल {1} था। हर खिलाड़ी को {2} × अपना माल − सबका माल ({3}) मिलता है। विजेता माल देखने वालों से 3 और न देखने वालों से 10 लेता है।'],
 // progression
-[/^\+(\d+) XP$/,'+{1} XP','+{1} XP'],[/^(\d+) \/ (\d+) XP$/,'{1} / {2} XP','{1} / {2} XP'],[/^\+(\d+) coins$/,'+{1} सिक्का','+{1} सिक्के'],[/^Collect (\d+) coins$/,'{1} सिक्का लिनुहोस्','{1} सिक्के लें'],[/^Day (\d)$/,'दिन {1}','दिन {1}'],
+[/^\+(\d+) XP$/,'+{1} XP','+{1} XP'],[/^Watch ad: (\d+) coins$/,'विज्ञापन हेरेर {1} सिक्का','विज्ञापन देखकर {1} सिक्के'],[/^Watch a short ad for (\d+) coins\. (\d) left today\.$/,'छोटो विज्ञापन हेरेर {1} सिक्का पाउनुहोस्। आज {2} पटक बाँकी।','छोटा विज्ञापन देखकर {1} सिक्के पाएँ। आज {2} बार बाकी।'],[/^(\d+) \/ (\d+) XP$/,'{1} / {2} XP','{1} / {2} XP'],[/^\+(\d+) coins$/,'+{1} सिक्का','+{1} सिक्के'],[/^Collect (\d+) coins$/,'{1} सिक्का लिनुहोस्','{1} सिक्के लें'],[/^Day (\d)$/,'दिन {1}','दिन {1}'],
 [/^(\d+)-day streak$/,'लगातार {1} दिन','लगातार {1} दिन'],[/^Level (\d+)! \+(\d+) coins$/,'लेभल {1}! +{2} सिक्का','लेवल {1}! +{2} सिक्के'],[/^Level (\d+)$/,'लेभल {1}','लेवल {1}'],[/^Lv (\d+)$/,'लेभल {1}','लेवल {1}'],
 [/^Reach level (\d+)$/,'लेभल {1} पुग्नुहोस्','लेवल {1} तक पहुँचें'],[/^(.+) unlocked$/,'{1} खुल्यो','{1} अनलॉक हुआ'],[/^First win: (.+)$/,'पहिलो जित: {1}','पहली जीत: {1}'],[/^Win a game of (.+)$/,'{1} को एउटा खेल जित्नुहोस्','{1} का एक खेल जीतें'],
 [/^Play (\d+) games or hands$/,'{1} खेल वा हात खेल्नुहोस्','{1} खेल या हाथ खेलें'],[/^Win (\d+) games or hands$/,'{1} खेल वा हात जित्नुहोस्','{1} खेल या हाथ जीतें'],
@@ -1062,7 +1063,7 @@ class TeenPatti{
   potPt(){return{x:cx,y:cy+CH*.45}}
   pay(i,amt){const p=this.players[i];amt=Math.min(amt,p.chips);p.chips-=amt;this.pot+=amt;if(amt>0){flyChip(badgePos(i),this.potPt(),2);sfx('chip')}return amt}
   async run(){for(;;){const r=await this.playHand();if(r)return r}}
-  async playHand(){
+  async playHand(){maybeInterstitial();
     this.handNo++;this.winnerIdx=-1;
     for(const p of this.players.slice(1))if(p.chips<this.boot*4){p.chips=this.start;p.rebuy=true}
     const me=this.players[0];
@@ -1356,7 +1357,7 @@ class Kitti{
     return L}
   pay(i,amt){const p=this.players[i];amt=Math.min(amt,p.chips);p.chips-=amt;this.pot+=amt;if(amt>0){flyChip(badgePos(i),this.potPt(),2);sfx('chip')}}
   async run(){for(;;){const r=await this.playDeal();if(r)return r}}
-  async playDeal(){
+  async playDeal(){maybeInterstitial();
     this.dealNo++;this.winIdx=-1;this.shown=0;this.showWin=[];
     for(const p of this.players.slice(1))if(p.chips<this.boot*3){p.chips=this.start;p.rebuy=true}
     const me=this.players[0];
@@ -1783,7 +1784,7 @@ async function setup(key){
   LAST[key]=opts;PF.lastGame=key;savePF();try{localStorage.setItem('taas.last',JSON.stringify(LAST))}catch(e){}
   startGame(key,opts)}
 async function startGame(key,opts){
-  stopGame();$('#lobby').hidden=true;['#bMenu','#ttl','#bRules','#bHint'].forEach(s=>$(s).hidden=false);['#pChip','#pCoinsBtn'].forEach(s=>$(s).hidden=true);if(typeof maybeGuide==='function')await maybeGuide(key);
+  maybeInterstitial();stopGame();$('#lobby').hidden=true;['#bMenu','#ttl','#bRules','#bHint'].forEach(s=>$(s).hidden=false);['#pChip','#pCoinsBtn'].forEach(s=>$(s).hidden=true);if(typeof maybeGuide==='function')await maybeGuide(key);
   G=key==='callbreak'?new CallBreak(opts):key==='dhumbal'?new Dhumbal(opts):key==='rummy'?new Rummy(opts):key==='kachuful'?new Kachuful(opts):key==='kitti'?new Kitti(opts):key==='marriage'?new Marriage(opts):new TeenPatti(opts,key==='flash');
   $('#tTitle').textContent=tr(G.title);const pr=G.print();$('#print').innerHTML=`${esc(tr(pr[0]))}<small>${esc(tr(pr[1]))}</small>`;
   buildSeats();lastCenter='';render();
@@ -1792,7 +1793,7 @@ async function startGame(key,opts){
   if(r==='again')startGame(key,opts);else toLobby()}
 function stopGame(){TOKEN++;if(PEND){const p=PEND;PEND=null;p.rej(new Abort())}if(MPEND){const m=MPEND;closeModal();m.rej(new Abort())}
   setActions([]);msg('');hideAll();seatsLayer.innerHTML='';$('#labels').innerHTML='';seatEls=[];$('#center').innerHTML='';lastCenter='';$('#fx').innerHTML='';G=null}
-function toLobby(){stopGame();$('#lobby').hidden=false;['#bMenu','#ttl','#bRules','#bHint'].forEach(s=>$(s).hidden=true);['#pChip','#pCoinsBtn'].forEach(s=>$(s).hidden=false);if(typeof refreshChip==='function'){refreshChip();setTimeout(maybeDaily,500)}$('#print').innerHTML='TAAS ADDA<small>EST. KATHMANDU</small>';$('#confirm').hidden=true;buildLobby()}
+function toLobby(){maybeInterstitial();stopGame();$('#lobby').hidden=false;['#bMenu','#ttl','#bRules','#bHint'].forEach(s=>$(s).hidden=true);['#pChip','#pCoinsBtn'].forEach(s=>$(s).hidden=false);if(typeof refreshChip==='function'){refreshChip();setTimeout(maybeDaily,500)}$('#print').innerHTML='TAAS ADDA<small>EST. KATHMANDU</small>';$('#confirm').hidden=true;buildLobby()}
 
 function applySettings(){if(typeof owns==='function'){if(!owns('felt',S.felt))S.felt='emerald';if(!owns('back',S.back))S.back='crimson'}document.documentElement.dataset.felt=S.felt;app.classList.remove('bk-crimson','bk-navy','bk-jade','bk-dhaka','bk-mandala','bk-gold','bk-marigold');app.classList.add('bk-'+S.back);app.classList.toggle('four',!!S.four);app.classList.toggle('bigidx',!!S.bigidx);
   document.documentElement.style.setProperty('--t',(.42*spd()).toFixed(2)+'s');
@@ -1810,10 +1811,10 @@ async function openSettings(){
   <div class="field"><span>Vibration</span>${segHTML('haptics',[['1','On'],['0','Off']],S.haptics===false?'0':'1')}</div>
   <div class="field"><span>Animation speed</span>${segHTML('speed',[['slow','Slow'],['normal','Normal'],['fast','Fast']],S.speed)}</div>
   <div class="field"><span>Computer players</span>${segHTML('diff',[['easy','Easy'],['normal','Normal'],['hard','Hard']],S.diff)}</div>
-  <div class="field"><span>Sound</span>${segHTML('sound',[['1','On'],['0','Off']],S.sound?'1':'0')}</div>`;
+  <div class="field"><span>Sound</span>${segHTML('sound',[['1','On'],['0','Off']],S.sound?'1':'0')}</div>${adsAvailable()&&ADS.privacy?`<div class="field"><span>Ads and privacy</span><div><button type="button" class="btn" id="privBtn">Privacy choices</button></div></div>`:''}`;
   const p=modal({title:'Settings',body,buttons:[{label:'Done',value:1,primary:true}]});
   wireSegs($('#sheet'),(f,v)=>{if(f==='lang'){setLang(v);if(G)render();else{buildLobby();refreshChip()}return}if(['four','sound','bigidx','haptics'].includes(f))S[f]=v==='1';else S[f]=v;saveS();applySettings();if(G)render()});
-  $('#setShop').onclick=()=>{closeModal();openShop()};
+  $('#setShop').onclick=()=>{closeModal();openShop()};if($('#privBtn'))$('#privBtn').onclick=()=>{try{TaasNative.privacyOptions()}catch(e){}};
   $('#fName').oninput=e=>{S.name=e.target.value.trim()||'You';saveS();if(G){G.players[0].name=S.name;render()}};
   try{await p}catch(e){}if(!G)buildLobby()}
 
@@ -1855,7 +1856,7 @@ class MockLink extends Link{
   send(id,o){this.post({k:'msg',to:id,data:JSON.stringify(o)})}
   drop(id){this.post({k:'bye',to:id});this.peers.delete(id)}
   stop(){this.peers.forEach(p=>this.post({k:'bye',to:p}));this.peers.clear();this.mode=null}}
-window.__native=ev=>{if(!ev)return;if(ev.type==='location'){const cb=window.__locCb;window.__locCb=null;if(cb)cb(ev.lat!=null?{lat:+ev.lat,lng:+ev.lng,acc:+ev.acc}:null);return}
+window.__native=ev=>{if(!ev)return;if(ev.type==='ads'||ev.type==='ad'){adsEvent(ev);return}if(ev.type==='location'){const cb=window.__locCb;window.__locCb=null;if(cb)cb(ev.lat!=null?{lat:+ev.lat,lng:+ev.lng,acc:+ev.acc}:null);return}
   if(MP.net)MP.net.emit(ev.type,ev)};
 function mpNet(){if(MP.net)return MP.net;const n=NATIVE?new NativeLink():new MockLink();MP.net=n;
   n.on('found',e=>{MP.found[e.id]=e.name;if(MP.screen==='join')mpRender()});
@@ -2120,11 +2121,26 @@ function gameDone(k,won){if(MP.role==='client')return;const r=REWARD[k]||[20,20,
   const before=levelOf(PF.xp);PF.xp+=xp;PF.coins+=coins;PF.games++;if(won)PF.wins++;
   ensureChallenges();if(!PF.ch.games.includes(k)){PF.ch.games.push(k);track('variety')}
   track('play');track('play:'+k);if(won){track('win');track('win:'+k)}
+  if(r[0]>20)ADS.pendingInter=true;else if(++ADS.hands>=8){ADS.hands=0;ADS.pendingInter=true}
   if(r[0]>20)setTimeout(()=>rewardCard(won,xp,coins,before),350);else toast(`+${xp} XP · +${coins} coins`,won?'🏅':'✨');if(won){confetti(r[0]>20?140:50);buzz(60)}
   const after=levelOf(PF.xp);if(after>before){const bonus=after*25;PF.coins+=bonus;savePF();track('level');
     setTimeout(()=>{toast(`Level ${after}! +${bonus} coins`,'⬆️');confetti(160);sfx('win')},900)}
   savePF();refreshChip()}
 
+/* --- ads (Android app only; the web version has none) --- */
+const ADS={rewarded:false,interstitial:false,privacy:false,pend:null,lastInter:0,pendingInter:false,hands:0};
+const AD_COINS=50,AD_DAILY_LIMIT=5;
+function adsAvailable(){return NATIVE&&typeof TaasNative.showRewarded==='function'}
+function adsEvent(ev){if(ev.type==='ads'){ADS.rewarded=!!ev.rewarded;ADS.interstitial=!!ev.interstitial;ADS.privacy=!!ev.privacy;return}
+  if(ev.format==='rewarded'&&ADS.pend&&ADS.pend.placement===ev.placement){const r=ADS.pend.res;ADS.pend=null;if(ev.event==='not_ready')toast('Ad not ready yet. Try again in a minute.','⏳');r(!!ev.earned)}}
+function showRewarded(placement){return new Promise(res=>{if(!adsAvailable()){res(false);return}
+  if(!ADS.rewarded){toast('Ad not ready yet. Try again in a minute.','⏳');try{TaasNative.adsStatus()}catch(e){}res(false);return}
+  ADS.pend={placement,res};setTimeout(()=>{if(ADS.pend&&ADS.pend.res===res){ADS.pend=null;res(false)}},120000);try{TaasNative.showRewarded(placement)}catch(e){ADS.pend=null;res(false)}})}
+function maybeInterstitial(){const due=ADS.pendingInter;ADS.pendingInter=false;
+  if(!due||!adsAvailable()||!ADS.interstitial||MP.on||PF.games<2||Date.now()-ADS.lastInter<180000)return;
+  ADS.lastInter=Date.now();try{TaasNative.showInterstitial()}catch(e){}}
+function adLeft(){const d=todayStr();if(!PF.adCoins||PF.adCoins.date!==d)PF.adCoins={date:d,n:0};return AD_DAILY_LIMIT-PF.adCoins.n}
+function freeCoinsHTML(){const left=adLeft();return`<div class="freec"><span class="fci">🎬</span><span class="fct"><b>Free coins</b><small>${left>0?`Watch a short ad for ${AD_COINS} coins. ${left} left today.`:'Come back tomorrow for more free coins.'}</small></span><button type="button" class="btn primary" id="freeCoins"${left>0?'':' disabled'}>Watch ad</button></div>`}
 /* --- victory card after a full game --- */
 function rewardCard(won,xp,coins,lvlBefore){const box=$('#reward');const L=levelOf(PF.xp),a=lvlNeed(L),b=lvlNeed(L+1),pct=Math.round((PF.xp-a)/(b-a)*100);
   const prevPct=L>lvlBefore?0:Math.max(0,Math.round((PF.xp-xp-a)/(b-a)*100));
@@ -2154,10 +2170,11 @@ function refreshChip(){const L=levelOf(PF.xp),a=lvlNeed(L),b=lvlNeed(L+1),pct=Ma
   if(typeof trDom==='function')trDom($('#pChip'))}
 const DAILY=[20,30,40,60,80,100,150];
 async function maybeDaily(){const d=todayStr();if(PF.daily.last===d||G||$('#lobby').hidden||MPEND||!$('#mp').hidden||!$('#sos').hidden)return;
-  const streak=PF.daily.last&&dayDiff(PF.daily.last,d)===1?PF.daily.streak+1:1;const idx=(streak-1)%7,amt=DAILY[idx];
+  const streak=PF.daily.last&&dayDiff(PF.daily.last,d)===1?PF.daily.streak+1:1;const idx=(streak-1)%7;let amt=DAILY[idx];
   const row=DAILY.map((v,i)=>`<div class="dday${i<idx?' got':i===idx?' now':''}"><small>Day ${i+1}</small><b>${v}</b><span class="coin"></span></div>`).join('');
-  try{await modal({title:'Daily bonus',body:`<p class="hint" style="margin:0 0 10px">Come back every day: the bonus grows for 7 days in a row.</p><div class="drow">${row}</div>`,buttons:[{label:`Collect ${amt} coins`,value:1,primary:true}]})}catch(e){return}
-  PF.daily={last:d,streak};PF.coins+=amt;savePF();sfx('chip');confetti(70);toast(`+${amt} coins`,'🪙',streak>1?`${streak}-day streak`:'');track('streak',0);refreshChip()}
+  const canAd=adsAvailable()&&ADS.rewarded;let pick;
+  try{pick=await modal({title:'Daily bonus',body:`<p class="hint" style="margin:0 0 10px">Come back every day: the bonus grows for 7 days in a row.</p><div class="drow">${row}</div>`,buttons:canAd?[{label:`Collect ${amt} coins`,value:1},{label:`Watch ad: ${amt*2} coins`,value:'ad',primary:true}]:[{label:`Collect ${amt} coins`,value:1,primary:true}]})}catch(e){return}
+  PF.daily={last:d,streak};savePF();if(pick==='ad'&&await showRewarded('daily'))amt*=2;PF.coins+=amt;savePF();sfx('chip');confetti(70);toast(`+${amt} coins`,'🪙',streak>1?`${streak}-day streak`:'');track('streak',0);refreshChip()}
 
 /* --- screens --- */
 function chRows(){ensureChallenges();return PF.ch.items.map(it=>{const c=chDef(it.id);return`<div class="chrow${it.done?' done':''}"><span class="chi">${it.done?'✓':'🎯'}</span><span class="cht"><b>${esc(chText(c))}</b><span class="bar"><i style="width:${Math.round(it.prog/c.n*100)}%"></i></span><small>${it.prog} / ${c.n}</small></span><span class="chc">+${c.c}<span class="coin"></span></span></div>`}).join('')}
@@ -2181,10 +2198,11 @@ function shopCard(it){const own=owns(it.k,it.v),using=S[it.k]===it.v;
   return`<div class="sitem${using?' using':''}">${prev}<b>${esc(it.name)}</b>${it.tag?`<small class="stag">${esc(it.tag)}</small>`:''}
     ${using?'<button class="btn" disabled>In use</button>':own?`<button class="btn" data-use="${it.k}:${it.v}">Use</button>`:`<button class="btn primary" data-buy="${it.k}:${it.v}"${PF.coins<it.price?' disabled':''}>${fmt(it.price)} <span class="coin"></span></button>`}</div>`}
 async function openShop(){
-  const draw=()=>{$('#sheet .body').innerHTML=`<p class="hint" style="margin:0 0 12px">Spend the coins you win on new tables and card backs.<br>Your coins: <b>${fmt(PF.coins)}</b> <span class="coin"></span></p><h4>Tables</h4><div class="shop">${SHOP.filter(i=>i.k==='felt').map(shopCard).join('')}</div><h4>Card backs</h4><div class="shop">${SHOP.filter(i=>i.k==='back').map(shopCard).join('')}</div>`;
+  const draw=()=>{$('#sheet .body').innerHTML=`<p class="hint" style="margin:0 0 12px">Spend the coins you win on new tables and card backs.<br>Your coins: <b>${fmt(PF.coins)}</b> <span class="coin"></span></p>${adsAvailable()?freeCoinsHTML():''}<h4>Tables</h4><div class="shop">${SHOP.filter(i=>i.k==='felt').map(shopCard).join('')}</div><h4>Card backs</h4><div class="shop">${SHOP.filter(i=>i.k==='back').map(shopCard).join('')}</div>`;
     if(typeof trDom==='function')trDom($('#sheet .body'));
     $('#sheet').querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>{const[k,v]=b.dataset.buy.split(':');const it=SHOP.find(x=>x.k===k&&x.v===v);if(!it||PF.coins<it.price||owns(k,v))return;
       PF.coins-=it.price;PF.own[k].push(v);PF.bought=(PF.bought||0)+1;S[k]=v;saveS();savePF();applySettings();sfx('chip');confetti(60);toast(`${it.name} unlocked`,'🛍️');track('own',0);refreshChip();draw()});
+    const fc=$('#freeCoins');if(fc)fc.onclick=async()=>{if(adLeft()<=0)return;fc.disabled=true;if(await showRewarded('shop')){PF.adCoins.n++;PF.coins+=AD_COINS;savePF();sfx('chip');confetti(50);toast(`+${AD_COINS} coins`,'🪙');refreshChip()}draw()};
     $('#sheet').querySelectorAll('[data-use]').forEach(b=>b.onclick=()=>{const[k,v]=b.dataset.use.split(':');if(!owns(k,v))return;S[k]=v;saveS();applySettings();sfx('tick');draw()})};
   const pr=modal({title:'Shop',body:'',buttons:[{label:'Done',value:1,primary:true}],wide:true});draw();try{await pr}catch(e){}if(!G)buildLobby()}
 $('#pChip').onclick=()=>{ac();if(!MPEND)openProfile()};

@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
 
     WebView web;
     NearbyHub nearby;
+    AdsHub ads;
     private Runnable afterGrant;
     private Runnable afterDeny;
 
@@ -111,8 +112,10 @@ public class MainActivity extends Activity {
         web.setWebChromeClient(new WebChromeClient());
 
         nearby = new NearbyHub(this);
+        ads = new AdsHub(this);
         web.addJavascriptInterface(new Bridge(), "TaasNative");
         web.loadUrl(START_URL);
+        ads.start();
 
         // Android 13+ (and always when targeting Android 16): back goes through OnBackInvokedCallback.
         if (Build.VERSION.SDK_INT >= 33) {
@@ -274,6 +277,31 @@ public class MainActivity extends Activity {
         @JavascriptInterface
         public void stopAll() {
             runOnUiThread(() -> nearby.stopAll());
+        }
+
+        /** Shows a rewarded ad. The page gets {type:'ad', format:'rewarded', placement, earned} when it closes. */
+        @JavascriptInterface
+        public void showRewarded(final String placement) {
+            if (placement == null || placement.length() > 32) return;
+            runOnUiThread(() -> ads.showRewarded(placement));
+        }
+
+        /** Shows an interstitial between games if one is loaded. */
+        @JavascriptInterface
+        public void showInterstitial() {
+            runOnUiThread(() -> ads.showInterstitial());
+        }
+
+        /** Re-reports ad readiness to the page. */
+        @JavascriptInterface
+        public void adsStatus() {
+            runOnUiThread(() -> ads.report());
+        }
+
+        /** Opens Google's privacy choices form (Europe/UK players). */
+        @JavascriptInterface
+        public void privacyOptions() {
+            runOnUiThread(() -> ads.showPrivacyOptions());
         }
 
         @JavascriptInterface

@@ -11,7 +11,14 @@ android {
         minSdk 24
         targetSdk 36
         versionCode((System.getenv('GITHUB_RUN_NUMBER') ?: '1') as Integer)
-        versionName '0.4.0'
+        versionName '0.5.0'
+        manifestPlaceholders = [admobAppId: project.property('ADMOB_APP_ID')]
+        buildConfigField 'String', 'ADMOB_REWARDED_ID', "\"${project.property('ADMOB_REWARDED_ID')}\""
+        buildConfigField 'String', 'ADMOB_INTERSTITIAL_ID', "\"${project.property('ADMOB_INTERSTITIAL_ID')}\""
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     // Release signing comes from GitHub secrets (see PUBLISHING.md). Never commit the keystore.
@@ -44,4 +51,6 @@ dependencies {
     implementation 'androidx.webkit:webkit:1.12.1'
     implementation 'com.google.android.gms:play-services-nearby:19.3.0'
     implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation 'com.google.android.gms:play-services-ads:23.6.0'
+    implementation 'com.google.android.ump:user-messaging-platform:3.1.0'
 }

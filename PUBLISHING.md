@@ -4,7 +4,7 @@ This is the full order of work to publish Taas Adda on Google Play and earn from
 
 **Plan on about 4 weeks.** Most of it is waiting: Google requires new personal accounts to run a 14-day closed test, and account checks take a few days each.
 
-> **Current plan: publish free, with no ads, first.** On a D-2 student visa, earning ad income in Korea may need permission from immigration. Skip step 3 (AdMob) and answer **No** to "contains ads" in step 5 until immigration (call 1345) confirms it's allowed, or until your visa or country changes. Ads can be added in a later update.
+> **Ads are built in, using Google's test ads** (they earn nothing). Before switching to your real AdMob IDs, make sure your legal route to earning in Korea is in place (for example a 체류자격 외 활동허가 permit on your D-2 visa; ask 1345 or your university's international office).
 
 | What | Where |
 |---|---|
@@ -55,16 +55,17 @@ Google Play needs a privacy-policy link, and AdMob needs a file called `app-ads.
 4. Verify your phone number with the 6-digit code.
 5. Open **Payments** and enter your **payment details**: your legal name, **Individual**, and your full postal address. New accounts aren't approved to show ads until this is done. Verification usually takes up to 24 hours, rarely up to 2 weeks.
 6. Add the app: **Apps → Add app → Android → "Is the app listed on a supported app store?" → No**. Name it **Taas Adda**.
-7. Create two ad units for the app:
+7. **Block gambling ads**: **Blocking controls → Content → Sensitive categories → Gambling & betting → Blocked**. India bans advertising real-money games, and these ads don't belong in a card game rated for teens.
+8. Create two ad units for the app:
    - **Rewarded**, name `Bonus coins`
    - **Interstitial**, name `Between games`
-8. **Send Claude** these, as they appear in AdMob. They are not secret; they ship inside the app.
+9. **Send Claude** these, as they appear in AdMob. They are not secret; they ship inside the app.
    - App ID: `ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY`
    - Rewarded ad unit ID: `ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ`
    - Interstitial ad unit ID: `ca-app-pub-XXXXXXXXXXXXXXXX/ZZZZZZZZZZ`
    - Publisher ID: `pub-XXXXXXXXXXXXXXXX` (for `app-ads.txt`)
 
-Claude then adds the ads to the app: optional rewarded ads for bonus coins and chips, and short ads only between full games, never during a hand. It also adds the privacy consent message that Google requires for players in Europe and the UK.
+The ads are already built in with Google's test IDs: an optional ad to double the daily bonus, free coins in the shop (5 a day), and short ads only between full games (at most one every 3 minutes, never during a hand or in nearby play). Google's privacy consent message for Europe and the UK is built in too. Claude swaps in your real IDs (in `gradle.properties`) and adds `app-ads.txt` to your website.
 
 **Rules that get AdMob accounts closed. Never break them:**
 - Never tap your own ads, and never ask friends or testers to tap them. Use test devices (Claude sets this up).
@@ -91,10 +92,10 @@ Play needs an **App Bundle (.aab)** signed with your private upload key, from `t
 2. Work through **Set up your app** on the dashboard, using `store/listing.md`:
    - **Privacy policy**: `https://sharma2040.github.io/privacy-policy.html`
    - **App access**: all features available without login.
-   - **Ads**: **Yes, my app contains ads** (once AdMob is added; answer No if you upload a build without ads first, and change it later).
+   - **Ads**: **Yes, my app contains ads**.
    - **Content rating**: answer honestly. **Yes** to simulated gambling (pretend chips in Teen Patti, Flash, Kitti), **yes** to users interacting (nearby chat), **yes** to sharing location (SOS, only when the user chooses), **no** real-money gambling. Expect a Teen / 12+ rating.
    - **Target audience**: 13 and over. Do **not** opt into *Designed for Families*.
-   - **Data safety**: use the suggested answers in `store/listing.md`. With AdMob added, also declare that the app shares **device or other IDs** with Google for **advertising** (Claude will update `store/listing.md` when ads are added).
+   - **Data safety**: use the answers in `store/listing.md`, which include what the AdMob SDK collects (advertising ID, approximate location, app interactions, diagnostics).
    - **Government app, financial features, health**: No.
 3. **Store settings → contact details**: your email, and website **`https://sharma2040.github.io`** (AdMob reads `app-ads.txt` from here).
 4. **Main store listing**: name, short and full description, icon, feature graphic and the six screenshots from `store/`. Category **Card**. Add **Nepali** and **Hindi** translations of the listing too (*Manage translations*).
