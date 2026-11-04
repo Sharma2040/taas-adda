@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+ launch screen: table-green background with the card icon -->
+    <style name="AppTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/room</item>
+        <item name="android:colorBackground">@color/room</item>
+        <item name="android:statusBarColor">@color/room</item>
+        <item name="android:navigationBarColor">@color/room</item>
+        <item name="android:windowSplashScreenBackground">@color/icon_bg</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+    </style>
+</resources>
