@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-vMcUnS+1607zTGIXwV4/cjsqe44+lFaltQd0wiLAfs4='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-YL+tw7JUQb3UBzhj96Ybnh8lR1FUMw7lNlB3k+P+Xmc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'none'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0d0a08">
 <meta name="referrer" content="no-referrer">
@@ -502,6 +502,23 @@ function trDom(root){if(!root)return;const w=document.createTreeWalker(root,Node
   root.querySelectorAll&&root.querySelectorAll('[placeholder],[aria-label],[title]').forEach(el=>{if(el.closest('.card'))return;for(const a of ['placeholder','aria-label','title']){if(!el.hasAttribute(a))continue;const k='__en_'+a;if(el[k]==null)el[k]=el.getAttribute(a);el.setAttribute(a,tr(el[k]))}})}
 /* Nepali [0] and Hindi [1] translations. Card-game words follow how people say them at the table. */
 I18N={
+'Play blind or seen, stay or pack, sideshow and show. Points, not chips.':['ब्लाइन्ड वा सिन खेल्नुहोस्: बस्नुहोस् वा प्याक, साइड शो र शो। चिप्स होइन, अंक।','ब्लाइंड या सीन खेलें: रुकें या पैक, साइड शो और शो। चिप्स नहीं, अंक।'],
+'The Nepali way: Trial, Double Run, Run, Color, Jute. Play blind or seen for points.':['नेपाली तरिका: ट्रायल, डबल रन, रन, कलर, जुट। ब्लाइन्ड वा सिन, अंकका लागि खेल्नुहोस्।','नेपाली तरीका: ट्रायल, डबल रन, रन, कलर, जुट। ब्लाइंड या सीन, अंकों के लिए खेलें।'],
+'Split nine cards into three Flash hands. Win two of the three shows to win the deal.':['नौ पत्तीलाई तीनवटा फ्लास हातमा बाँड्नुहोस्। तीनमध्ये दुई शो जितेर डिल जित्नुहोस्।','नौ पत्तों को तीन फ़्लैश हाथों में बाँटें। तीन में से दो शो जीतकर डील जीतें।'],
+'Hands':['हात','हाथ'],'Deals':['डिल','डील'],'Turns':['पालो','बारी'],'PLAY FOR POINTS':['अंकका लागि खेल','अंकों के लिए खेल'],
+'Everyone gets 3 cards face down. You play for points, not chips.':['सबैले 3 पत्ती घोप्टो पाउँछन्। चिप्स होइन, अंकका लागि खेलिन्छ।','सबको 3 पत्ते उल्टे मिलते हैं। चिप्स नहीं, अंकों के लिए खेलते हैं।'],
+'Stay or Pack on each turn. Winning while still blind earns a bonus point.':['हरेक पालोमा बस्नुहोस् वा प्याक गर्नुहोस्। ब्लाइन्ड रहँदै जिते एक बोनस अंक।','हर बारी में रुकें या पैक करें। ब्लाइंड रहते जीतें तो एक बोनस अंक।'],
+'With two players left you can ask for a Show. Pack to give up the hand.':['दुई जना बाँकी हुँदा शो माग्न सकिन्छ। हात छोड्न प्याक गर्नुहोस्।','दो खिलाड़ी बचें तो शो माँग सकते हैं। हाथ छोड़ने के लिए पैक करें।'],
+'Stay':['बस्नुहोस्','रुकें'],'Stay blind':['ब्लाइन्ड बस्नुहोस्','ब्लाइंड रुकें'],'blind':['ब्लाइन्ड','ब्लाइंड'],
+'Last turn played. Everyone shows.':['अन्तिम पालो सकियो। सबैले शो गर्छन्।','आखिरी बारी हो गई। सब शो करेंगे।'],
+'See results':['नतिजा हेर्नुहोस्','नतीजे देखें'],'Hands won':['जितेका हात','जीते हाथ'],'Deals won':['जितेका डिल','जीती डील'],
+'Win a hand: +3, +1 if still blind, +3 / +2 / +1 for the best hands at a show. Stay to the end and lose: −1. Pack: 0.':['हात जिते: +3, ब्लाइन्ड भए +1, शोमा उत्कृष्ट हातका लागि +3 / +2 / +1। अन्तसम्म बसेर हारे: −1। प्याक: 0।','हाथ जीतें: +3, ब्लाइंड हों तो +1, शो में सबसे अच्छे हाथों के लिए +3 / +2 / +1। अंत तक रुककर हारे: −1। पैक: 0।'],
+'Each show won is a point. Win two shows to win the deal. If nobody does, it’s Kitti: the next deal is worth more.':['जितेको हरेक शो एक अंक। दुई शो जिते डिल तपाईंको। कसैले जितेन भने किट्टी: अर्को डिलमा बढी अंक।','हर जीता शो एक अंक। दो शो जीतें तो डील आपकी। कोई न जीते तो किट्टी: अगली डील में ज़्यादा अंक।'],
+'Kitti bonus':['किट्टी बोनस','किट्टी बोनस'],
+'Each show won: +1. Win two shows: +2 more, plus any Kitti bonus.':['जितेको हरेक शो: +1। दुई शो जिते: थप +2, साथै किट्टी बोनस।','हर जीता शो: +1। दो शो जीतें: +2 और, साथ में किट्टी बोनस।'],
+'Win a deal with a Kitti bonus':['किट्टी बोनससहित डिल जित्नुहोस्','किट्टी बोनस के साथ डील जीतें'],
+'Winning blind earns +1. See your cards before your last turn.':['ब्लाइन्ड जिते +1। अन्तिम पालोअघि पत्ती हेर्नुहोस्।','ब्लाइंड जीतें तो +1। आखिरी बारी से पहले पत्ते देखें।'],
+'You win the deal':['तपाईंले डिल जित्नुभयो','आपने डील जीती'],
 // games & brand
 'Call Break':['कल ब्रेक','कॉल ब्रेक'],'Kachuful':['कचुफुल','कचुफूल'],'Teen Patti':['तीन पत्ती','तीन पत्ती'],'Flash':['फ्लास','फ़्लैश'],
 'Kitti':['किट्टी','किट्टी'],'Marriage':['म्यारिज','मैरिज'],'Rummy':['रमी','रमी'],'Dhumbal':['धुम्बल','धुम्बल'],
@@ -699,6 +716,11 @@ I18N={
 'Continue':['जारी राख्नुहोस्','जारी रखें'],'Play again with your last settings':['पछिल्लो सेटिङमा फेरि खेल्नुहोस्','पिछली सेटिंग्स के साथ फिर खेलें']
 };
 I18P=[
+[/^Hand (\d+) of (\d+)$/,'हात {1} / {2}','हाथ {1} / {2}'],[/^Kitti bonus \+(\d+)$/,'किट्टी बोनस +{1}','किट्टी बोनस +{1}'],[/^\+(\d+) pts$/,'+{1} अंक','+{1} अंक'],
+[/^You win (\d+) pts$/,'तपाईंले {1} अंक जित्नुभयो','आपने {1} अंक जीते'],[/^(.+) wins (\d+) pts$/,'{1} ले {2} अंक जित्यो','{1} ने {2} अंक जीते'],[/^(.+) wins the deal$/,'{1} ले डिल जित्यो','{1} ने डील जीती'],
+[/^Kitti! Nobody won two shows\. The next deal is worth \+(\d+) more\.$/,'किट्टी! कसैले दुई शो जितेन। अर्को डिल +{1} बढी।','किट्टी! किसी ने दो शो नहीं जीते। अगली डील +{1} ज़्यादा।'],
+[/^(.+): very strong\. Stay and ask for a show\.$/,'{1}: धेरै बलियो। बसेर शो माग्नुहोस्।','{1}: बहुत मज़बूत। रुकें और शो माँगें।'],[/^(.+): good hand\. Stay\.$/,'{1}: राम्रो हात। बस्नुहोस्।','{1}: अच्छा हाथ। रुकें।'],
+[/^(.+): average\. Stay carefully, pack if others look strong\.$/,'{1}: मध्यम। होसियारीसाथ बस्नुहोस्, अरू बलिया देखिए प्याक गर्नुहोस्।','{1}: औसत। सावधानी से रुकें, दूसरे मज़बूत लगें तो पैक करें।'],[/^(.+): weak\. Pack to avoid losing a point\.$/,'{1}: कमजोर। अंक नगुमाउन प्याक गर्नुहोस्।','{1}: कमज़ोर। अंक न गँवाने के लिए पैक करें।'],
 // subtitles & counters
 [/^Round (\d+) of (\d+)$/,'राउन्ड {1} / {2}','राउंड {1} / {2}'],[/^Round (\d+) scores$/,'राउन्ड {1} को अंक','राउंड {1} के अंक'],[/^Round (\d+)$/,'राउन्ड {1}','राउंड {1}'],
 [/^Deal (\d+) of (\d+)$/,'डिल {1} / {2}','डील {1} / {2}'],[/^Deal (\d+)$/,'डिल {1}','डील {1}'],[/^Hand (\d+)$/,'हात {1}','हाथ {1}'],[/^hand (\d+)$/,'हात {1}','हाथ {1}'],
@@ -1034,13 +1056,16 @@ let TPK=null;
 function tpPct(k){if(!TPK){TPK=[];const d=newDeck();for(let a=0;a<52;a++)for(let b=a+1;b<52;b++)for(let c=b+1;c<52;c++)TPK.push(tpKey([d[a],d[b],d[c]]));TPK.sort((x,y)=>x-y)}
   let lo=0,hi=TPK.length;while(lo<hi){const m=(lo+hi)>>1;if(TPK[m]<k)lo=m+1;else hi=m}return lo/TPK.length}
 const TPN={teenpatti:['High card','Pair','Color','Sequence','Pure sequence','Trail'],flash:['Top','Jute','Color','Run','Double run','Trial']};
+/* Points edition: no chips, no pot, no betting. Each hand scores match points; the best total after the last hand wins. */
+const TP_TURNS=3;
+const TPB={teenpatti:{Trail:3,'Pure sequence':2,Sequence:1},flash:{Trial:3,'Double run':2,Run:1}};
 class TeenPatti{
   constructor(o,flash){this.key=flash?'flash':'teenpatti';this.title=flash?'Flash':'Teen Patti';this.names=TPN[this.key];
-    this.variant=o.variant||'classic';this.n=o.players||4;this.boot=o.boot||10;this.start=o.chips||1000;this.maxStake=this.boot*64;this.potLimit=this.boot*400;
-    this.deck=newDeck();this.players=makePlayers(this.n).map(p=>Object.assign(p,{chips:this.start,hand:[],seen:false,packed:false,tag:''}));
-    this.dealer=rand(this.n);this.pile=[];this.pot=0;this.stake=this.boot;this.joker=null;this.handNo=0;this.cur=-1;this.peek=null;this.winnerIdx=-1}
-  print(){return[this.title.toUpperCase(),this.variant==='joker'?'JOKER WILD':this.variant==='muflis'?'MUFLIS · LOWEST WINS':`BOOT ${this.boot} · POT LIMIT ${fmt(this.potLimit)}`]}
-  subtitle(){return`Hand ${this.handNo} · Boot ${this.boot} · ${this.variant==='classic'?'Classic':this.variant==='joker'?'Joker':'Muflis'}`}
+    this.variant=o.variant||'classic';this.n=o.players||4;this.hands=o.hands||5;
+    this.deck=newDeck();this.players=makePlayers(this.n).map(p=>Object.assign(p,{score:0,won:0,hand:[],seen:false,packed:false,tag:''}));
+    this.dealer=rand(this.n);this.pile=[];this.joker=null;this.handNo=0;this.cur=-1;this.peek=null;this.winnerIdx=-1;this.last=null}
+  print(){return[this.title.toUpperCase(),this.variant==='joker'?'JOKER WILD':this.variant==='muflis'?'MUFLIS · LOWEST WINS':'PLAY FOR POINTS']}
+  subtitle(){return`Hand ${this.handNo} of ${this.hands} · ${this.variant==='classic'?'Classic':this.variant==='joker'?'Joker':'Muflis'}`}
   deckPos(){return{x:cx+CW*1.5,y:cy-CH*.1}}
   key3(p){return this.variant==='joker'&&this.joker?jokerKey(p.hand,this.joker.r):tpKey(p.hand)}
   cmp(i,j){const a=this.key3(this.players[i]),b=this.key3(this.players[j]);return this.variant==='muflis'?b-a:a-b}
@@ -1049,10 +1074,10 @@ class TeenPatti{
   active(){return this.players.map((p,i)=>i).filter(i=>!this.players[i].packed)}
   nextActive(i){let j=i;do j=(j+1)%this.n;while(this.players[j].packed&&j!==i);return j}
   prevActive(i){let j=i;do j=(j-1+this.n)%this.n;while(this.players[j].packed&&j!==i);return j}
-  callAmt(p){return p.seen?this.stake*2:this.stake}
-  seatInfo(i){const p=this.players[i];return{sub:`${fmt(p.chips)} chips`,tag:p.tag||(p.packed?'Packed':p.hand.length?(p.seen?'Seen':'Blind'):''),out:p.packed,win:this.winnerIdx===i}}
-  centerHTML(){if(!this.pot&&this.winnerIdx<0)return'';const n=clamp(Math.ceil(this.pot/(this.boot*3)),1,24);const cols=Math.min(4,Math.ceil(n/6));let st='';for(let c=0;c<cols;c++){let col='';const h=Math.ceil(n/cols)-(c%2);for(let k=0;k<Math.max(1,h);k++)col+=`<div class="chip" style="--cc:${CHIPC[(c+1)%CHIPC.length]};left:0;bottom:${k*4}px"></div>`;st+=`<div class="col">${col}</div>`}
-    return`<div class="pot"><div class="stack">${st}</div><b>${fmt(this.pot)}</b><span>Pot · Stake ${fmt(this.stake)}</span></div>`+(this.joker?`<div class="feltnote" style="left:${-CW*1.5}px;top:${CH*.62}px">Joker</div>`:'')}
+  seatInfo(i){const p=this.players[i];return{sub:`${p.score} pts`,tag:p.tag||(p.packed?'Packed':p.hand.length?(p.seen?'Seen':'Blind'):''),out:p.packed,win:this.winnerIdx===i}}
+  centerHTML(){let h='';if(this.last)h+=`<div class="pot"><b>+${this.last.pts}</b><span>${esc(tr(this.last.w===0?'You':this.players[this.last.w].name))}</span></div>`;
+    else if(this.handNo&&this.cur>=0){const t=Math.min(TP_TURNS,1+Math.max(...this.active().map(j=>this.players[j].turns||0)));h+=`<div class="pot"><b>${t} / ${TP_TURNS}</b><span>${esc(tr('Turns'))}</span></div>`}
+    return h+(this.joker?`<div class="feltnote" style="left:${-CW*1.5}px;top:${CH*.62}px">Joker</div>`:'')}
   placements(){const L=[];const dp=this.deckPos();
     this.pile.forEach((c,k)=>L.push({c,x:dp.x+k*.15,y:dp.y-k*.3,t:26,up:false,z:k+1,s:.8,flat:k>0}));
     if(this.joker)L.push({c:this.joker,x:cx-CW*1.5,y:cy-CH*.05,t:24,up:true,s:.78,z:60,r:-8});
@@ -1060,41 +1085,33 @@ class TeenPatti{
       if(i===0)this.handSpan=humanFan(p.hand,L,{up:p.seen||show,s:PORTRAIT?1.35:1.12,dim:p.packed});
       else oppFan(i,this.n,p.hand,L,{up:show,s:show?.66:.52,gap:show?CW*.5:CW*.17,dim:p.packed,glow:show&&this.winnerIdx===i})});
     return L}
-  potPt(){return{x:cx,y:cy+CH*.45}}
-  pay(i,amt){const p=this.players[i];amt=Math.min(amt,p.chips);p.chips-=amt;this.pot+=amt;if(amt>0){flyChip(badgePos(i),this.potPt(),2);sfx('chip')}return amt}
-  async run(){for(;;){const r=await this.playHand();if(r)return r}}
+  async run(){for(this.handNo=1;this.handNo<=this.hands;this.handNo++){const r=await this.playHand();if(r)return r}return await this.matchEnd()}
   async playHand(){maybeInterstitial();
-    this.handNo++;this.winnerIdx=-1;
-    for(const p of this.players.slice(1))if(p.chips<this.boot*4){p.chips=this.start;p.rebuy=true}
-    const me=this.players[0];
-    if(me.chips<this.boot){const v=await modal({title:'You are out of chips',body:`<p>Rebuy to keep playing at this table with ${fmt(this.start)} chips.</p>`,buttons:[{label:'Lobby',value:'lobby'},{label:`Rebuy ${fmt(this.start)}`,value:'rebuy',primary:true}]});if(v==='lobby')return'lobby';me.chips=this.start}
+    this.winnerIdx=-1;this.last=null;
     this.dealer=(this.dealer+1)%this.n;
-    this.players.forEach(p=>Object.assign(p,{hand:[],seen:false,packed:false,revealed:false,tag:'',blindTurns:0,blindLimit:1+rand(3)}));
-    this.pot=0;this.stake=this.boot;this.joker=null;this.peek=null;hideAll();this.pile=shuffle(this.deck.slice());render();await sleep(300);
-    this.players.forEach((p,i)=>{if(p.rebuy){bubble(i,'Rebuys');p.rebuy=false}this.pay(i,this.boot)});render();await sleep(550);
+    this.players.forEach(p=>Object.assign(p,{hand:[],seen:false,packed:false,revealed:false,tag:'',turns:0,blindLimit:rand(3)}));
+    this.joker=null;this.peek=null;hideAll();this.pile=shuffle(this.deck.slice());render();await sleep(300);
     for(let k=0;k<3*this.n;k++){this.players[(this.dealer+1+k)%this.n].hand.push(this.pile.pop());sfx('card');render();await sleep(70)}
     if(this.variant==='joker'){this.joker=this.pile.pop();render();msg(`Joker: every ${RNAME[this.joker.r]} is wild`);await sleep(900)}
     this.turn=(this.dealer+1)%this.n;let res=null;
-    for(let guard=0;guard<400&&!res;guard++){
+    for(let guard=0;guard<200&&!res;guard++){
       const act=this.active();
       if(act.length===1){res={w:act[0],shown:false};break}
-      const funded=act.filter(j=>this.players[j].chips>0);
-      if(this.pot>=this.potLimit||funded.length<=1){msg(this.pot>=this.potLimit?'Pot limit reached. Everyone shows.':'All in. Showdown.');await sleep(900);res={w:this.best(act),shown:true,all:true};break}
+      if(act.every(j=>this.players[j].turns>=TP_TURNS)){msg('Last turn played. Everyone shows.');await sleep(900);res={w:this.best(act),shown:true};break}
       const i=this.turn,p=this.players[i];
-      if(p.packed||p.chips===0){this.turn=this.nextActive(i);continue}
+      if(p.packed||p.turns>=TP_TURNS){this.turn=this.nextActive(i);continue}
       this.cur=i;render();
       const a=p.bot?await this.botAct(i):await this.humanAct(i);
-      res=await this.apply(i,a);
+      p.turns++;res=await this.apply(i,a);
       if(!res)this.turn=this.nextActive(i)}
-    if(!res)res={w:this.best(this.active()),shown:true,all:true};
+    if(!res)res={w:this.best(this.active()),shown:true};
     this.cur=-1;return await this.finish(res)}
   best(idx){return idx.reduce((b,i)=>this.cmp(i,b)>0?i:b)}
   async apply(i,a){const p=this.players[i],act=this.active();
     if(a==='pack'){p.packed=true;p.tag='Packed';bubble(i,'Pack');sfx('fold');render();await sleep(420);return null}
-    if(a==='call'){const amt=this.pay(i,this.callAmt(p));bubble(i,`${p.seen?'Chaal':'Blind'} ${fmt(amt)}`);render();await sleep(420);return null}
-    if(a==='raise'){this.stake=Math.min(this.stake*2,this.maxStake);const amt=this.pay(i,this.callAmt(p));bubble(i,`Raise ${fmt(amt)}`);render();await sleep(450);return null}
-    if(a==='show'){this.pay(i,this.callAmt(p));bubble(i,'Show!');render();await sleep(650);const o=act.find(j=>j!==i);return{w:this.cmp(i,o)>0?i:o,shown:true}}
-    if(a==='sideshow'){const j=this.prevActive(i),q=this.players[j];this.pay(i,this.callAmt(p));bubble(i,`Sideshow with ${q.name}?`);render();await sleep(650);
+    if(a==='stay'){bubble(i,p.seen?'Stay':'Stay blind');sfx('tick');render();await sleep(420);return null}
+    if(a==='show'){bubble(i,'Show!');render();await sleep(650);const o=act.find(j=>j!==i);return{w:this.cmp(i,o)>0?i:o,shown:true}}
+    if(a==='sideshow'){const j=this.prevActive(i),q=this.players[j];bubble(i,`Sideshow with ${q.name}?`);render();await sleep(650);
       const ok=q.bot?(this.strength(q)>.5||Math.random()<.25):await this.askSide(i);
       if(!ok){bubble(j,'Denied');await sleep(700);return null}
       bubble(j,'Accepted');if(i===0||j===0){this.peek=[i,j]}render();await sleep(1100*(i===0||j===0?1.4:1));
@@ -1102,43 +1119,49 @@ class TeenPatti{
     return null}
   async askSide(i){setActions([{label:'Deny',value:false},{label:'Accept',value:true,kind:'primary'}],{center:true,title:`${esc(this.players[i].name)} asks for a sideshow`,hint:'Compare cards privately. The weaker hand packs.'});const v=await waitHuman();setActions([]);return v}
   async humanAct(i){const p=this.players[i];
-    for(;;){const act=this.active().length,amt=this.callAmt(p),prev=this.prevActive(i);const items=[];
+    for(;;){const act=this.active().length,prev=this.prevActive(i);const items=[];
       if(!p.seen)items.push({label:'See cards',value:'see'});
-      items.push({label:'Pack',value:'pack',kind:'danger'});
-      items.push({label:p.seen?'Chaal':'Blind',sub:fmt(Math.min(amt,p.chips)),value:'call',kind:'primary'});
-      if(this.stake<this.maxStake&&p.chips>amt*2)items.push({label:'Raise',sub:fmt(this.stake*2*(p.seen?2:1)),value:'raise'});
+      items.push({label:'Pack',sub:'0',value:'pack',kind:'danger'});
+      items.push({label:p.seen?'Stay':'Stay blind',sub:`${p.turns+1} / ${TP_TURNS}`,value:'stay',kind:'primary'});
       const oth=this.active().find(j=>j!==i);
-      if(act===2&&!(p.seen&&!this.players[oth].seen))items.push({label:'Show',sub:fmt(Math.min(amt,p.chips)),value:'show'});
-      else if(p.seen&&this.players[prev].seen&&prev!==i)items.push({label:'Sideshow',sub:fmt(Math.min(amt,p.chips)),value:'sideshow'});
+      if(act===2&&!(p.seen&&!this.players[oth].seen))items.push({label:'Show',value:'show'});
+      else if(p.seen&&this.players[prev].seen&&prev!==i)items.push({label:'Sideshow',value:'sideshow'});
       setActions(items);msg(p.seen?`Your turn · ${this.handName(p)}`:'Your turn · playing blind');
       const v=await waitHuman();setActions([]);msg('');
       if(v==='see'){p.seen=true;p.tag='';sfx('card');render();await sleep(250);continue}
       return v}}
-  async botAct(i){const p=this.players[i],act=this.active(),pressure=this.stake/this.maxStake;await sleep(650);
-    if(!p.seen){p.blindTurns++;
-      if(p.blindTurns>p.blindLimit||pressure>.4){p.seen=true;bubble(i,'Seen',900);render();await sleep(500)}
-      else{if(act.length===2&&Math.random()<.12)return'show';return Math.random()<.14&&this.stake<this.maxStake?'raise':'call'}}
-    const s=this.strength(p),d=S.diff,amt=this.callAmt(p);
-    if(amt>p.chips)return s>.62?'call':'pack';
+  async botAct(i){const p=this.players[i],act=this.active(),late=p.turns/TP_TURNS;await sleep(650);
+    if(!p.seen){if(p.turns>=p.blindLimit||late>.6){p.seen=true;bubble(i,'Seen',900);render();await sleep(500)}
+      else{if(act.length===2&&Math.random()<.12)return'show';return'stay'}}
+    const s=this.strength(p),d=S.diff;
     const bluff=d==='easy'?.18:d==='hard'?.07:.11;
-    const stay=.2+pressure*.5+(d==='easy'?-.1:0);
+    const need=.25+late*.3+(act.length-2)*.04+(d==='easy'?-.1:0);
     const oth=act.find(j=>j!==i),canShow=!(p.seen&&!this.players[oth].seen);
-    if(act.length===2){if(canShow&&s>.55+pressure*.25&&Math.random()<.45+pressure)return'show';if(s<stay*.8&&Math.random()>bluff)return'pack';return s>.8&&this.stake<this.maxStake&&Math.random()<.4?'raise':'call'}
-    if(s<stay)return Math.random()<bluff?'call':'pack';
-    if(s>.86&&this.stake<this.maxStake&&Math.random()<.55)return'raise';
-    if(s>.7&&this.stake<this.maxStake&&Math.random()<.18)return'raise';
+    if(act.length===2){if(canShow&&s>.55+late*.2&&Math.random()<.45+late)return'show';if(s<need*.8&&Math.random()>bluff)return'pack';return'stay'}
+    if(s<need)return Math.random()<bluff?'stay':'pack';
     const prev=this.prevActive(i);if(this.players[prev].seen&&s<.62&&Math.random()<.22)return'sideshow';
-    return'call'}
+    return'stay'}
+  /* scoring: winner +3, +1 if still blind, +3/+2/+1 for Trail/Pure sequence/Sequence at a show; players who stayed in and lost −1; packed 0 */
   async finish(res){
-    const me=this.players[0];me.seen=true;
+    const me=this.players[0],wasBlind=!this.players[res.w].seen;me.seen=true;
     if(res.shown)this.active().forEach(j=>{this.players[j].revealed=true;this.players[j].tag=this.handName(this.players[j])});
-    this.winnerIdx=res.w;const w=this.players[res.w],won=this.pot;render();await sleep(500);
-    flyChip(this.potPt(),badgePos(res.w),6);w.chips+=won;this.pot=0;sfx(res.w===0?'win':me.packed?'fold':'lose');render();
-    if(!me.packed||res.w===0)stat(this.key,res.w===0);
+    this.winnerIdx=res.w;const w=this.players[res.w];
+    const rank=res.shown&&this.variant!=='muflis'?(TPB[this.key][this.handName(w)]||0):0;
+    const pts=3+(wasBlind?1:0)+rank;w.score+=pts;w.won++;
+    const losers=this.active().filter(j=>j!==res.w);losers.forEach(j=>{this.players[j].score-=1;bubble(j,'−1',1400)});
+    this.last={w:res.w,pts};render();await sleep(300);sfx(res.w===0?'win':me.packed?'fold':'lose');
     if(res.w===0)track('tp_win');if(!me.packed&&res.shown&&Math.floor(this.key3(me)/32768)===6)track('tp_trail');
-    msg(`${w.name===S.name&&res.w===0?'You win':w.name+' wins'} ${fmt(won)}${res.shown?` with ${this.handName(w)}`:''}`);
-    setActions([{label:'Lobby',value:'lobby'},{label:'Next hand',value:'next',kind:'primary'}]);
-    const v=await waitHuman();setActions([]);msg('');this.winnerIdx=-1;return v==='lobby'?'lobby':null}
+    const why=[res.shown?this.handName(w):'',wasBlind?'blind':''].filter(Boolean).join(' · ');
+    msg(`${res.w===0?'You win':w.name+' wins'} ${pts} pts${why?` · ${why}`:''}`);
+    const lastHand=this.handNo>=this.hands;
+    setActions([{label:'Lobby',value:'lobby'},{label:lastHand?'See results':'Next hand',value:'next',kind:'primary'}]);
+    const v=await waitHuman();setActions([]);msg('');this.winnerIdx=-1;this.last=null;return v==='lobby'?'lobby':null}
+  async matchEnd(){
+    const tots=this.players.map(p=>p.score),best=Math.max(...tots),winners=this.players.filter(p=>p.score===best),me=winners.includes(this.players[0]);
+    const rows=this.players.map(p=>`<tr${p.score===best?' class="tot"':''}><td>${esc(p.name)}</td><td>${p.won}</td><td class="${p.score<0?'neg':p.score===best?'best':''}">${p.score}</td></tr>`).join('');
+    const tbl=`<div class="tbl"><table class="sc"><tr><th>Player</th><th>Hands won</th><th>Total</th></tr>${rows}</table></div><p style="margin-top:8px;color:var(--muted);font-size:12.5px">Win a hand: +3, +1 if still blind, +3 / +2 / +1 for the best hands at a show. Stay to the end and lose: −1. Pack: 0.</p>`;
+    stat(this.key,me);sfx(me?'win':'lose');
+    return await modal({title:me?'You win the match!':`${esc(winners[0].name)} wins the match`,body:tbl,buttons:[{label:'Lobby',value:'lobby'},{label:'Play again',value:'again',primary:true}],wide:true})}
 }
 
 /* =========================================================
@@ -1327,19 +1350,16 @@ function kittiBest(h,m){const cdf=kittiCdf(),F=(p,i)=>{const a=cdf[i];let lo=0,h
   let best=null;for(const part of kittiTriples(h)){const so=kittiSort(h,part);const q=so.map((x,i)=>Math.pow(F(tpPct(x.k),i),m-1));
     const v=q[0]*q[1]+q[0]*q[2]+q[1]*q[2]-2*q[0]*q[1]*q[2]+.001*(q[0]+q[1]+q[2]);if(!best||v>best.v)best={v,arr:so.flatMap(x=>x.t)}}return best.arr}
 class Kitti{
-  constructor(o){this.key='kitti';this.title='Kitti';this.n=o.players||4;this.boot=o.boot||10;this.start=o.chips||1000;this.actbExtra=22;this.deck=newDeck();
-    this.players=makePlayers(this.n).map(p=>Object.assign(p,{chips:this.start,hand:[],arr:null,pts:0}));
-    this.dealer=rand(this.n);this.pile=[];this.pot=0;this.carry=0;this.dealNo=0;this.cur=-1;this.phase='';this.sel=null;this.shown=0;this.showWin=[];this.winIdx=-1;this.labels=[];this.names=TPN.flash}
+  constructor(o){this.key='kitti';this.title='Kitti';this.n=o.players||4;this.deals=o.deals||5;this.actbExtra=22;this.deck=newDeck();
+    this.players=makePlayers(this.n).map(p=>Object.assign(p,{score:0,won:0,hand:[],arr:null,pts:0}));
+    this.dealer=rand(this.n);this.pile=[];this.carry=0;this.dealNo=0;this.cur=-1;this.phase='';this.sel=null;this.shown=0;this.showWin=[];this.winIdx=-1;this.labels=[];this.names=TPN.flash}
   print(){return['KITTI','NINE CARDS · THREE SHOWS']}
-  subtitle(){return`Deal ${this.dealNo} · Boot ${this.boot}`+(this.carry?` · Kitti! ${fmt(this.carry)} carried over`:'')}
+  subtitle(){return`Deal ${this.dealNo} of ${this.deals}`+(this.carry?` · Kitti bonus +${this.carry}`:'')}
   deckPos(){return{x:cx,y:cy-CH*.1}}
   hn(t){return this.names[Math.floor(tpKey(t)/32768)-1]}
   groups(p){const a=p.arr||p.hand;return[a.slice(0,3),a.slice(3,6),a.slice(6,9)]}
-  seatInfo(i){const p=this.players[i];return{sub:`${fmt(p.chips)} chips`,tag:this.shown?`${p.pts} won`:'',win:this.winIdx===i}}
-  centerHTML(){if(!this.pot)return'';const n=clamp(Math.ceil(this.pot/(this.boot*3)),1,20),cols=Math.min(4,Math.ceil(n/5));let st='';
-    for(let c=0;c<cols;c++){let col='';for(let k=0;k<Math.max(1,Math.ceil(n/cols)-(c%2));k++)col+=`<div class="chip" style="--cc:${CHIPC[(c+2)%CHIPC.length]};left:0;bottom:${k*4}px"></div>`;st+=`<div class="col">${col}</div>`}
-    return`<div class="pot"><div class="stack">${st}</div><b>${fmt(this.pot)}</b><span>Pot${this.carry?' · incl. Kitti':''}</span></div>`}
-  potPt(){return{x:cx,y:cy+CH*.45}}
+  seatInfo(i){const p=this.players[i];return{sub:`${p.score} pts`,tag:this.shown?`${p.pts} won`:'',win:this.winIdx===i}}
+  centerHTML(){if(!this.carry)return'';return`<div class="pot"><b>+${this.carry}</b><span>${esc(tr('Kitti bonus'))}</span></div>`}
   placements(){const L=[],dp=this.deckPos();this.labels=[];
     this.pile.forEach((c,k)=>L.push({c,x:dp.x+k*.15,y:dp.y-k*.3,t:26,up:false,z:k+1,s:.8,flat:k>0}));
     const me=this.players[0];
@@ -1355,16 +1375,13 @@ class Kitti{
       gs.forEach((g,gi)=>g.forEach((c,j)=>{const off=(gi*3+j-4)*gap+(gi-1)*ggap;const up=this.shown>gi;
         L.push({c,x:b.x+tx*off,y:b.y+ty*off,r:rot+(j-1)*2,t:20,up,s:up?.5:.44,z:200+gi*3+j,glow:up&&this.shown===gi+1&&this.showWin[gi]===i})}))}
     return L}
-  pay(i,amt){const p=this.players[i];amt=Math.min(amt,p.chips);p.chips-=amt;this.pot+=amt;if(amt>0){flyChip(badgePos(i),this.potPt(),2);sfx('chip')}}
-  async run(){for(;;){const r=await this.playDeal();if(r)return r}}
+  async run(){for(this.dealNo=1;this.dealNo<=this.deals;this.dealNo++){const r=await this.playDeal();if(r)return r}return await this.matchEnd()}
+  /* scoring: +1 for each show won; win two shows for +2 more plus any Kitti bonus; if nobody wins two, the next deal is worth +2 more */
   async playDeal(){maybeInterstitial();
-    this.dealNo++;this.winIdx=-1;this.shown=0;this.showWin=[];
-    for(const p of this.players.slice(1))if(p.chips<this.boot*3){p.chips=this.start;p.rebuy=true}
+    this.winIdx=-1;this.shown=0;this.showWin=[];
     const me=this.players[0];
-    if(me.chips<this.boot){const v=await modal({title:'You are out of chips',body:`<p>Rebuy to keep playing with ${fmt(this.start)} chips.</p>`,buttons:[{label:'Lobby',value:'lobby'},{label:`Rebuy ${fmt(this.start)}`,value:'rebuy',primary:true}]});if(v==='lobby')return'lobby';me.chips=this.start}
     this.dealer=(this.dealer+1)%this.n;this.players.forEach(p=>Object.assign(p,{hand:[],arr:null,pts:0}));
-    this.pot=this.carry;hideAll();this.pile=shuffle(this.deck.slice());render();await sleep(300);
-    this.players.forEach((p,i)=>{if(p.rebuy){bubble(i,'Rebuys');p.rebuy=false}this.pay(i,this.boot)});render();await sleep(500);
+    hideAll();this.pile=shuffle(this.deck.slice());render();await sleep(300);
     for(let k=0;k<9*this.n;k++){this.players[(this.dealer+1+k)%this.n].hand.push(this.pile.pop());if(k%2===0)sfx('card');render();await sleep(30)}
     this.pile=[];const o={S:0,H:1,C:2,D:3};me.hand.sort((a,b)=>o[a.s]-o[b.s]||b.r-a.r);render();
     msg('Arranging…');await sleep(150);
@@ -1381,15 +1398,22 @@ class Kitti{
     for(let g=0;g<3;g++){this.shown=g+1;sfx('card');const ks=this.players.map(p=>tpKey(this.groups(p)[g]));const top=Math.max(...ks),wi=ks.filter(k=>k===top).length>1?-1:ks.indexOf(top);
       this.showWin[g]=wi;render();await sleep(700);
       if(wi===0)track('kt_show');
-      if(wi>=0){this.players[wi].pts++;bubble(wi,`${ORD[g]} show · ${this.hn(this.groups(this.players[wi])[g])}`,1600);sfx(wi===0?'tick':'sweep')}else msg(`${ORD[g]} show tied: no point`);
+      if(wi>=0){const q=this.players[wi];q.pts++;q.score++;bubble(wi,`${ORD[g]} show · ${this.hn(this.groups(q)[g])}`,1600);sfx(wi===0?'tick':'sweep')}else msg(`${ORD[g]} show tied: no point`);
       render();await sleep(1500);msg('')}
     const w=this.players.findIndex(p=>p.pts>=2);
-    if(w<0){this.carry=this.pot;msg(`Kitti! Nobody won two shows. ${fmt(this.pot)} carries to the next deal.`);sfx('lose')}
-    else{this.winIdx=w;const won=this.pot;flyChip(this.potPt(),badgePos(w),6);this.players[w].chips+=won;this.pot=0;this.carry=0;sfx(w===0?'win':'lose');
-      if(w===0&&this.carry)track('kt_kitti');
-      stat(this.key,w===0);msg(`${w===0?'You win':this.players[w].name+' wins'} ${fmt(won)} with ${this.players[w].pts} shows`)}
-    render();setActions([{label:'Lobby',value:'lobby'},{label:'Next deal',value:'next',kind:'primary'}]);
-    const v=await waitHuman();setActions([]);msg('');if(w<0)this.pot=0;return v==='lobby'?'lobby':null}
+    if(w<0){this.carry+=2;msg(`Kitti! Nobody won two shows. The next deal is worth +${this.carry} more.`);sfx('lose')}
+    else{this.winIdx=w;const bonus=2+this.carry,q=this.players[w];q.score+=bonus;q.won++;sfx(w===0?'win':'lose');
+      if(w===0&&this.carry)track('kt_kitti');this.carry=0;
+      msg(`${w===0?'You win':q.name+' wins'} the deal · +${q.pts+bonus} pts`)}
+    render();const lastDeal=this.dealNo>=this.deals;
+    setActions([{label:'Lobby',value:'lobby'},{label:lastDeal?'See results':'Next deal',value:'next',kind:'primary'}]);
+    const v=await waitHuman();setActions([]);msg('');return v==='lobby'?'lobby':null}
+  async matchEnd(){
+    const tots=this.players.map(p=>p.score),best=Math.max(...tots),winners=this.players.filter(p=>p.score===best),me=winners.includes(this.players[0]);
+    const rows=this.players.map(p=>`<tr${p.score===best?' class="tot"':''}><td>${esc(p.name)}</td><td>${p.won}</td><td class="${p.score===best?'best':''}">${p.score}</td></tr>`).join('');
+    const tbl=`<div class="tbl"><table class="sc"><tr><th>Player</th><th>Deals won</th><th>Total</th></tr>${rows}</table></div><p style="margin-top:8px;color:var(--muted);font-size:12.5px">Each show won: +1. Win two shows: +2 more, plus any Kitti bonus.</p>`;
+    stat(this.key,me);sfx(me?'win':'lose');
+    return await modal({title:me?'You win the match!':`${esc(winners[0].name)} wins the match`,body:tbl,buttons:[{label:'Lobby',value:'lobby'},{label:'Play again',value:'again',primary:true}],wide:true})}
 }
 
 
@@ -1709,12 +1733,12 @@ const CATALOG=[
    opts:[{id:'rounds',label:'Rounds',choices:[[3,'3'],[5,'5'],[7,'7']],def:5}]},
   {key:'kachuful',name:'Kachuful',meta:'3–5 players · Judgement',desc:'Call exactly how many tricks you will take. Trump rotates every round: Kaali, Chukat, Phuli, Laal.',fan:['AS','AD','AC','AH'],
    opts:[{id:'players',label:'Players',choices:[[3,'3'],[4,'4'],[5,'5']],def:4},{id:'start',label:'Start with',choices:[[5,'5 cards'],[8,'8 cards'],[13,'Most cards']],def:8}]},
-  {key:'teenpatti',name:'Teen Patti',meta:'3–5 players · 3 cards',desc:'Play blind or seen, chaal, raise, sideshow and show. Trail beats everything.',fan:['AH','AD','AC'],
-   opts:[{id:'players',label:'Players',choices:[[3,'3'],[4,'4'],[5,'5']],def:4},{id:'chips',label:'Starting chips',choices:[[500,'500'],[1000,'1,000'],[5000,'5,000']],def:1000},{id:'boot',label:'Boot',choices:[[10,'10'],[25,'25'],[50,'50']],def:10},{id:'variant',label:'Variant',choices:[['classic','Classic'],['joker','Joker wild'],['muflis','Muflis (low wins)']],def:'classic'}]},
-  {key:'flash',name:'Flash',meta:'3–5 players · 3 cards',desc:'The Nepali way: Trial, Double Run, Run, Color, Jute. Bet blind or seen.',fan:['QS','KS','AS'],
-   opts:[{id:'players',label:'Players',choices:[[3,'3'],[4,'4'],[5,'5']],def:4},{id:'chips',label:'Starting chips',choices:[[500,'500'],[1000,'1,000'],[5000,'5,000']],def:1000},{id:'boot',label:'Boot',choices:[[10,'10'],[25,'25'],[50,'50']],def:10},{id:'variant',label:'Variant',choices:[['classic','Classic'],['joker','Joker wild'],['muflis','Muflis (low wins)']],def:'classic'}]},
-  {key:'kitti',name:'Kitti',meta:'2–5 players · 9 cards',desc:'Split nine cards into three Flash hands. Win two of the three shows to take the pot.',fan:['9S','9H','9D','KC','QC'],
-   opts:[{id:'players',label:'Players',choices:[[2,'2'],[3,'3'],[4,'4'],[5,'5']],def:4},{id:'chips',label:'Starting chips',choices:[[500,'500'],[1000,'1,000'],[5000,'5,000']],def:1000},{id:'boot',label:'Boot',choices:[[10,'10'],[25,'25'],[50,'50']],def:10}]},
+  {key:'teenpatti',name:'Teen Patti',meta:'3–5 players · 3 cards',desc:'Play blind or seen, stay or pack, sideshow and show. Points, not chips.',fan:['AH','AD','AC'],
+   opts:[{id:'players',label:'Players',choices:[[3,'3'],[4,'4'],[5,'5']],def:4},{id:'hands',label:'Hands',choices:[[5,'5'],[10,'10']],def:5},{id:'variant',label:'Variant',choices:[['classic','Classic'],['joker','Joker wild'],['muflis','Muflis (low wins)']],def:'classic'}]},
+  {key:'flash',name:'Flash',meta:'3–5 players · 3 cards',desc:'The Nepali way: Trial, Double Run, Run, Color, Jute. Play blind or seen for points.',fan:['QS','KS','AS'],
+   opts:[{id:'players',label:'Players',choices:[[3,'3'],[4,'4'],[5,'5']],def:4},{id:'hands',label:'Hands',choices:[[5,'5'],[10,'10']],def:5},{id:'variant',label:'Variant',choices:[['classic','Classic'],['joker','Joker wild'],['muflis','Muflis (low wins)']],def:'classic'}]},
+  {key:'kitti',name:'Kitti',meta:'2–5 players · 9 cards',desc:'Split nine cards into three Flash hands. Win two of the three shows to win the deal.',fan:['9S','9H','9D','KC','QC'],
+   opts:[{id:'players',label:'Players',choices:[[2,'2'],[3,'3'],[4,'4'],[5,'5']],def:4},{id:'deals',label:'Deals',choices:[[5,'5'],[10,'10']],def:5}]},
   {key:'marriage',name:'Marriage',meta:'2–5 players · 21 cards',desc:'Nepal’s big festival game. Show three pure sequences or seven dublees to see the maal, collect tiplu and alter, then finish.',fan:['6H','7H','8H','7D','7S'],
    opts:[{id:'players',label:'Players',choices:[[2,'2'],[3,'3'],[4,'4'],[5,'5']],def:4},{id:'deals',label:'Deals',choices:[[1,'1'],[3,'3'],[5,'5']],def:3},{id:'unseen',label:'Players who never see the maal',choices:[['murder','Murder: their maal is lost'],['kidnap','Kidnap: winner takes it']],def:'murder'}]},
   {key:'rummy',name:'Rummy',meta:'2–4 players · 13 cards',desc:'Draw, discard and build sequences and sets with a cut joker. Needs a pure sequence to declare.',fan:['7H','8H','9H','5S'],
@@ -1728,7 +1752,8 @@ const RULES={
  <h4>Playing a trick</h4><ul><li>You must follow the suit that was led, and you must play higher than the best card of that suit in the trick if you can.</li><li>If you have none of the led suit, you must play a spade. If a spade is already in the trick, you must beat it if you can; if you can’t, you may play any card.</li><li>If you have neither the led suit nor spades, play any card.</li><li>The highest spade wins the trick; if no spade was played, the highest card of the led suit wins. The winner leads next.</li></ul>
  <h4>Scoring</h4><p>Make your bid: score the bid, plus 0.1 for each extra trick (bid 3, win 5 = 3.2). Miss it: score minus your bid (−3). After the last round, the highest total wins.</p>`,
  teenpatti:`<h4>Hand ranks, high to low</h4><ul><li><b>Trail</b>: three of a kind. A-A-A is highest.</li><li><b>Pure sequence</b>: three in a row of one suit.</li><li><b>Sequence</b>: three in a row, mixed suits. A-K-Q is highest, then A-2-3, then K-Q-J.</li><li><b>Color</b>: three cards of one suit.</li><li><b>Pair</b>: two of a kind.</li><li><b>High card</b>: none of the above.</li></ul><p>Within a rank, higher cards win. Suits never break ties.</p>
- <h4>Betting</h4><ul><li>Everyone puts the boot in the pot and gets three cards face down. Play passes to the right.</li><li>A <b>blind</b> player bets the current stake without looking. A <b>seen</b> player bets twice the stake (Chaal).</li><li><b>Raise</b> doubles the stake. <b>Pack</b> folds your hand.</li><li><b>Sideshow</b>: if you and the player before you have both seen your cards, you can ask to compare privately. They may refuse. If they accept, the weaker hand packs; on a tie the asker packs.</li><li><b>Show</b> is only possible when two players remain. A seen player cannot ask a blind player for a show. On a tie, the player who asked loses.</li><li>When the pot reaches the pot limit, all remaining hands are shown and the best one wins.</li></ul>
+ <h4>Playing a hand</h4><ul><li>Everyone gets three cards face down. Play passes to the right. Nobody bets: Taas Adda plays for points, never chips or money.</li><li>On your turn, <b>Stay</b> or <b>Pack</b> (give up the hand). You may play <b>blind</b> without looking, or <b>see</b> your cards first.</li><li><b>Sideshow</b>: if you and the player before you have both seen your cards, you can ask to compare privately. They may refuse. If they accept, the weaker hand packs; on a tie the asker packs.</li><li><b>Show</b> is only possible when two players remain. A seen player cannot ask a blind player for a show. On a tie, the player who asked loses.</li><li>Each player gets three turns. After that, all remaining hands are shown and the best one wins.</li></ul>
+ <h4>Scoring</h4><ul><li>Win the hand: <b>+3</b>, plus <b>+1</b> if you were still blind.</li><li>Win at a show with a Trail <b>+3</b>, Pure sequence <b>+2</b> or Sequence <b>+1</b> extra.</li><li>Stay to the end and lose: <b>−1</b>. Pack: <b>0</b>.</li><li>After the last hand, the highest total wins the match.</li></ul>
  <h4>Variants</h4><p><b>Joker wild</b>: one card is turned up; every card of that rank is wild. <b>Muflis</b>: the order is reversed and the lowest hand wins.</p>`,
  dhumbal:`<h4>Card values</h4><p>A = 1, 2 to 10 at face value, J = 11, Q = 12, K = 13. You want the lowest total.</p>
  <h4>Your turn</h4><ul><li>Each player has 5 cards. Play passes to the right.</li><li>First <b>discard</b>: one card, or 2 to 4 cards of the same rank, or a run of 3 or more in one suit (A-2-3 counts; Q-K-A does not).</li><li>Then <b>pick up one card</b>: the top of the deck, or any one card the previous player just discarded.</li></ul>
@@ -1744,9 +1769,9 @@ RULES.kachuful=`<h4>Rounds</h4><p>Each round deals one card fewer than the last 
  <h4>Calling</h4><p>Starting to the dealer’s right, everyone calls exactly how many tricks they will win. Zero is allowed. The dealer calls last and may not call the number that makes the total equal to the cards in hand, so somebody always misses.</p>
  <h4>Play</h4><ul><li>Follow the suit led if you can. If you can’t, play any card, trump or not.</li><li>The highest trump wins; if there is none, the highest card of the led suit wins. The winner leads next.</li></ul>
  <h4>Scoring</h4><p>Take exactly your call: score 10 plus the call (call 2, take 2 = 12; call 0, take 0 = 10). Take more or fewer: score 0. Highest total after the last round wins. Some groups score calls differently; this is the most common way.</p>`;
-RULES.kitti=`<h4>Setup</h4><p>Everyone puts the boot in the pot and gets 9 cards. Split them into three hands of three: your 1st, 2nd and 3rd hand. Your best split is set for you; tap two cards to swap them, or tap Auto arrange.</p>
+RULES.kitti=`<h4>Setup</h4><p>Everyone gets 9 cards. Split them into three hands of three: your 1st, 2nd and 3rd hand. Your best split is set for you; tap two cards to swap them, or tap Auto arrange.</p>
  <h4>Hand ranks (Flash)</h4><p>Trial (three of a kind) › Double run (pure sequence) › Run › Color › Jute (pair) › Top (high card). A-K-Q is the highest run, then A-2-3.</p>
- <h4>Shows</h4><ul><li>All 1st hands are shown and compared; the best wins the 1st show. Then the 2nd hands, then the 3rd.</li><li>If the best hands tie exactly, nobody wins that show.</li><li>Win two shows and you take the pot.</li><li>If nobody wins two shows it is <b>Kitti</b>: the pot stays on the table and is added to the next deal.</li></ul>
+ <h4>Shows</h4><ul><li>All 1st hands are shown and compared; the best wins the 1st show. Then the 2nd hands, then the 3rd.</li><li>If the best hands tie exactly, nobody wins that show.</li><li>Each show you win scores <b>+1</b>.</li><li>Win two shows and you win the deal: <b>+2</b> more.</li><li>If nobody wins two shows it is <b>Kitti</b>: the next deal's winner gets <b>+2</b> extra (it adds up).</li><li>After the last deal, the highest total wins the match. No chips, no betting.</li></ul>
  <p>Groups differ on details, such as requiring the 1st hand to be the strongest. Here you may order your hands any way you like.</p>`;
 RULES.marriage=`<h4>Setup</h4><p>Three decks shuffled together. Each player gets 21 cards. One card is set aside face down: the <b>maal</b>. One card starts the discard pile. Play passes to the right.</p>
  <h4>Your turn</h4><ul><li>Draw from the deck, or take the top discard. You may only take the discard if it completes a group with two cards in your hand (or a dublee, if you are collecting dublees).</li><li>Then throw one card. You can’t throw back the card you just took.</li></ul>
@@ -1757,7 +1782,7 @@ RULES.marriage=`<h4>Setup</h4><p>Three decks shuffled together. Each player gets
  <h4>Dublees</h4><ul><li>A dublee is two identical cards (same rank and suit). Instead of three sequences, you can show <b>seven dublees</b> to see the maal.</li><li>A dublee player goes out by holding an <b>eighth dublee</b> after drawing; the other cards don’t matter. Each opponent then pays 5 extra.</li><li>Jokers can’t stand in for a dublee card. After seeing, a dublee player may only take the discard if it makes the eighth dublee.</li></ul>
  <p>Once you have seen the maal by sequences, you can’t pick up a discarded joker. The highest total after the last deal wins.</p>`;
 function rulesFor(k){const t=typeof RULES_I18N!=='undefined'&&LANG!=='en'&&RULES_I18N[LANG]&&RULES_I18N[LANG][k];return t||(LANG!=='en'?`<p class="hint" style="margin:0 0 6px">${esc(tr('The full rules are in English for now. The short guide above is translated.'))}</p>`:'')+RULES[k]}
-RULES.flash=RULES.teenpatti.replace('<b>Trail</b>: three of a kind. A-A-A is highest.','<b>Trial</b>: three of a kind. A-A-A is highest.').replace('<b>Pure sequence</b>','<b>Double run</b>').replace('<b>Sequence</b>: three in a row, mixed suits','<b>Run</b>: three in a row, mixed suits').replace('<b>Pair</b>: two of a kind.','<b>Jute</b>: a pair.').replace('<b>High card</b>: none of the above.','<b>Top</b>: high card.');
+RULES.flash=RULES.teenpatti.replace('<b>Trail</b>: three of a kind. A-A-A is highest.','<b>Trial</b>: three of a kind. A-A-A is highest.').replace(/<b>Pure sequence<\/b>/g,'<b>Double run</b>').replace('a Trail <b>+3</b>, Pure sequence <b>+2</b> or Sequence <b>+1</b>','a Trial <b>+3</b>, Double run <b>+2</b> or Run <b>+1</b>').replace('<b>Sequence</b>: three in a row, mixed suits','<b>Run</b>: three in a row, mixed suits').replace('<b>Pair</b>: two of a kind.','<b>Jute</b>: a pair.').replace('<b>High card</b>: none of the above.','<b>Top</b>: high card.');
 const LAST={};try{Object.assign(LAST,JSON.parse(localStorage.getItem('taas.last')||'{}'))}catch(e){}
 
 function miniCard(id,x,rot){const c=newDeck().find(d=>d.id===id);return`<div class="card static" style="transform:translate(calc(-50% + ${x}px),0) rotate(${rot}deg);position:absolute"><div class="inner">${faceHTML(c)}</div></div>`}
@@ -2059,8 +2084,8 @@ function savePF(){try{localStorage.setItem('taas.profile',JSON.stringify(PF))}ca
 const lvlNeed=L=>50*L*(L-1);                // XP needed to reach level L (L1=0, L2=100, L3=300 …)
 function levelOf(xp){let L=1;while(xp>=lvlNeed(L+1))L++;return L}
 const GAME_NAME={callbreak:'Call Break',kachuful:'Kachuful',teenpatti:'Teen Patti',flash:'Flash',kitti:'Kitti',marriage:'Marriage',rummy:'Rummy',dhumbal:'Dhumbal'};
-// per finished game: [xp, xp bonus for a win, coins, coin bonus for a win]; hand-based games pay per hand
-const REWARD={callbreak:[40,50,20,40],kachuful:[40,50,20,40],marriage:[40,50,20,40],rummy:[35,45,15,35],dhumbal:[35,45,15,35],teenpatti:[6,10,3,8],flash:[6,10,3,8],kitti:[6,10,3,8]};
+// per finished game or match: [xp, xp bonus for a win, coins, coin bonus for a win]
+const REWARD={callbreak:[40,50,20,40],kachuful:[40,50,20,40],marriage:[40,50,20,40],rummy:[35,45,15,35],dhumbal:[35,45,15,35],teenpatti:[35,45,15,35],flash:[35,45,15,35],kitti:[35,45,15,35]};
 const AVATARS=['🐯','🦁','🐘','🦚','🐼','🦊','🐵','🦉','🐲','🦅','🐆','🐻','🌸','⭐','🔥','👑'];
 
 /* --- shop items --- */
@@ -2101,7 +2126,7 @@ const ACH=[
   {id:'mr_dub8',ev:'mr_dub8',n:1,t:'Eight dublees',d:'Finish Marriage with eight dublees',c:200},
   {id:'cb_bid8',ev:'cb_bid8',n:1,t:'Fearless',d:'Bid 8 in Call Break and make it',c:200},
   {id:'kc_zero',ev:'kc_zero',n:1,t:'Nothing at all',d:'Call 0 in Kachuful and take no tricks',c:80},
-  {id:'kt_kitti',ev:'kt_kitti',n:1,t:'Kitti jackpot',d:'Win a Kitti pot that carried over',c:120},
+  {id:'kt_kitti',ev:'kt_kitti',n:1,t:'Kitti jackpot',d:'Win a deal with a Kitti bonus',c:120},
   {id:'games_25',ev:'play',n:25,t:'Regular',d:'Play 25 games or hands',c:100},
   {id:'games_100',ev:'play',n:100,t:'Card shark',d:'Play 100 games or hands',c:250},
   {id:'streak_7',ev:'streak',n:7,t:'Seven days',d:'Collect the daily bonus 7 days in a row',c:200},
@@ -2217,9 +2242,9 @@ $('#pCoinsBtn').onclick=()=>{ac();if(!MPEND)openShop()};
 const GUIDES={
   callbreak:['Everyone gets 13 cards. First, bid how many tricks you will win.','Follow the suit that was led, and beat the best card if you can.','Spades are trump. With none of the led suit, you must play a spade.','Make your bid to score it. Miss it and you lose it.'],
   kachuful:['Call exactly how many tricks you will take. Zero is allowed.','Trump changes every round: Kaali ♠, Chukat ♦, Phuli ♣, Laal ♥.','Follow suit if you can. If you can’t, play anything; a trump wins.','An exact call scores 10 + your call. Anything else scores 0.'],
-  teenpatti:['Everyone puts in the boot and gets 3 cards face down.','Play blind for half price, or see your cards and bet double (Chaal).','Best hands: Trail › Pure sequence › Sequence › Color › Pair › High card.','With two players left you can ask for a Show. Pack to fold.'],
-  flash:['Everyone puts in the boot and gets 3 cards face down.','Play blind for half price, or see your cards and bet double (Chaal).','Best hands: Trial › Double run › Run › Color › Jute › Top.','With two players left you can ask for a Show. Pack to fold.'],
-  kitti:['You get 9 cards. Split them into three hands of three.','Your best split is set for you. Tap two cards to swap them.','Hands are compared one by one: 1st, then 2nd, then 3rd.','Win two shows to take the pot. If nobody does, it’s Kitti: the pot carries over.'],
+  teenpatti:['Everyone gets 3 cards face down. You play for points, not chips.','Stay or Pack on each turn. Winning while still blind earns a bonus point.','Best hands: Trail › Pure sequence › Sequence › Color › Pair › High card.','With two players left you can ask for a Show. Pack to give up the hand.'],
+  flash:['Everyone gets 3 cards face down. You play for points, not chips.','Stay or Pack on each turn. Winning while still blind earns a bonus point.','Best hands: Trial › Double run › Run › Color › Jute › Top.','With two players left you can ask for a Show. Pack to give up the hand.'],
+  kitti:['You get 9 cards. Split them into three hands of three.','Your best split is set for you. Tap two cards to swap them.','Hands are compared one by one: 1st, then 2nd, then 3rd.','Each show won is a point. Win two shows to win the deal. If nobody does, it’s Kitti: the next deal is worth more.'],
   marriage:['Everyone gets 21 cards. Each turn, draw a card and then throw one.','Make three pure sequences or tunnelas, then tap Show to see the maal.','After seeing, maal cards are jokers and score points: tiplu, poplu, jhiplu, alter.','Finish when every card is in a group, or collect seven dublees instead.'],
   rummy:['Each player gets 13 cards. A cut card makes every card of its rank a joker.','Draw from the closed deck or the open pile, then discard one card.','Build sequences and sets. You need at least one pure sequence.','When all 13 cards are grouped, discard your last card and Declare.'],
   dhumbal:['You get 5 cards. You want the lowest total: A = 1, K = 13.','Discard one card, a set of one rank, or a run of 3 or more in one suit.','Then pick up from the deck or from the last discard.','When your total is low enough, call Show. You must be the lowest!']};
@@ -2233,9 +2258,9 @@ CallBreak.prototype.hint=function(){if(this.cur!==0)return null;if(this.phase===
 Kachuful.prototype.hint=function(){if(this.cur!==0)return null;if(this.phase==='bid')return{text:`Suggested call: ${this.estimate(this.players[0].hand).bid}`};
   if(!this.legalSet)return null;const c=withHard(()=>this.ai(0));const need=this.players[0].bid-this.players[0].tricks;return{ids:[c.id],text:need>0?`Try ${ctxt(c)} to win a trick`:`Try ${ctxt(c)} to avoid winning`}};
 TeenPatti.prototype.hint=function(){const me=this.players[0];if(this.cur!==0||me.packed)return null;
-  if(!me.seen)return{text:'Playing blind costs half. See your cards when the stake gets high.'};
+  if(!me.seen)return{text:'Winning blind earns +1. See your cards before your last turn.'};
   const s=this.strength(me),n=this.handName(me);
-  return{text:s>.85?`${n}: very strong. Raise.`:s>.62?`${n}: good hand. Chaal.`:s>.38?`${n}: average. Chaal carefully, pack if the stake is high.`:`${n}: weak. Consider packing.`}};
+  return{text:s>.85?`${n}: very strong. Stay and ask for a show.`:s>.62?`${n}: good hand. Stay.`:s>.38?`${n}: average. Stay carefully, pack if others look strong.`:`${n}: weak. Pack to avoid losing a point.`}};
 Kitti.prototype.hint=function(){if(this.phase!=='arrange')return null;return{text:'Auto arrange finds a strong split. You need to win two of the three shows.'}};
 Dhumbal.prototype.hint=function(){if(this.cur!==0)return null;const p=this.players[0],t=this.total(p.hand);
   if(this.phase==='discard'){let best=null;for(const g of this.groups(p.hand)){const R=p.hand.filter(c=>!g.includes(c));const sd=this.total(R)+6.5-.55*this.bestGroup(R);if(!best||sd<best.s)best={g,s:sd}}
