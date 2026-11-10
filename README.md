@@ -12,7 +12,7 @@ Eight South Asian card games (Call Break, Kachuful, Teen Patti, Flash, Kitti, Ma
 
 > SOS is a way to alert friends. It does not contact the police or an ambulance for you. If you are in danger, call emergency services.
 
-Version 0.5.0 · package `com.taasadda.app` · Android 7.0 (API 24) and newer.
+Version 0.5.0 · package `io.github.sharma2040.taasadda` · Android 7.0 (API 24) and newer.
 
 ---
 

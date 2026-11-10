@@ -7,7 +7,7 @@ android {
     compileSdk 36
 
     defaultConfig {
-        applicationId 'com.taasadda.app'
+        applicationId 'io.github.sharma2040.taasadda'
         minSdk 24
         targetSdk 36
         versionCode((System.getenv('GITHUB_RUN_NUMBER') ?: '1') as Integer)
