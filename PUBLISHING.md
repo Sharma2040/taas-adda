@@ -93,7 +93,7 @@ Play needs an **App Bundle (.aab)** signed with your private upload key, from `t
    - **Privacy policy**: `https://sharma2040.github.io/privacy-policy.html`
    - **App access**: all features available without login.
    - **Ads**: **Yes, my app contains ads**.
-   - **Content rating**: answer honestly. **Yes** to gambling, but tick only **Gambling themes** (no chips or betting since v0.6; all games score points), **yes** to users interacting (nearby chat), **yes** to sharing location (SOS, only when the user chooses), **no** real-money gambling. Expect a Teen / 12+ rating.
+   - **Content rating**: answer honestly. **Yes** to simulated gambling (pretend chips in Teen Patti, Flash, Kitti), **yes** to users interacting (nearby chat), **yes** to sharing location (SOS, only when the user chooses), **no** real-money gambling. Expect a Teen / 12+ rating.
    - **Target audience**: 13 and over. Do **not** opt into *Designed for Families*.
    - **Data safety**: use the answers in `store/listing.md`, which include what the AdMob SDK collects (advertising ID, approximate location, app interactions, diagnostics).
    - **Government app, financial features, health**: No.

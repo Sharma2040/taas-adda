@@ -12,8 +12,8 @@ Taas Adda brings the card games played at every Nepali and Indian gathering to o
 EIGHT GAMES
 • Call Break – bid your tricks, spades are trump
 • Marriage – 21 cards, three decks, maal, tiplu, alter, tunnela and dublee
-• Teen Patti – blind or seen, stay or pack, sideshow and show, played for points
-• Flash – the Nepali way: Trial, Double Run, Run, Color, Jute, played for points
+• Teen Patti – blind or seen, chaal, raise, sideshow and show
+• Flash – the Nepali way: Trial, Double Run, Run, Color, Jute
 • Kitti – split nine cards into three hands and win two shows
 • Kachuful (Judgement) – call exactly, trump rotates Kaali, Chukat, Phuli, Laal
 • Rummy – 13 cards, two decks and a cut joker
@@ -35,14 +35,14 @@ LEVEL UP EVERY DAY
 • Learn mode: a quick guide for each game and a 💡 hint button
 
 MADE FOR REAL TABLES
-• Crisp, realistic cards with large corners, real court cards and felt
+• Crisp, realistic cards with large corners, real court cards, felt and chips
 • Rules screens for every game, plus options for common house rules
 • Four table colours, three card backs, four-colour deck, sound and speed settings
 
 SOS FOR SAFETY
 If something goes wrong, one tap alerts everyone at your table with your message and location, opens a text to your emergency contacts, or dials local emergency numbers for Nepal, India, Korea and more. Taas Adda does not contact emergency services for you.
 
-Free to play, with optional ads. No accounts. No betting and no real money: every game is played for points, and coins are earned only by playing.
+Free to play, with optional ads. No accounts. No real money: chips and coins are for fun only and can't be bought or cashed out.
 
 ## Category
 Games › Card
@@ -59,12 +59,12 @@ Developer website (needed for AdMob app-ads.txt): https://sharma2040.github.io
 ## Content rating questionnaire (IARC) – answer honestly
 • Category: Game
 • Violence / sexuality / language / drugs: No
-• Gambling: YES, tick only "Gambling themes" (Teen Patti and Flash are card games from gambling culture, but there are no chips, bets or pots: every game scores points). Not prominently featured. No casino games, no cash rewards, nothing to buy.
+• Simulated gambling: YES (Teen Patti, Flash, Kitti use pretend chips). No real-money gambling, nothing to buy.
 • Users can interact / exchange content: YES (chat with nearby players)
 • Shares user location with other users: YES (only the SOS feature, when the user chooses)
 • Digital purchases: No (until "Remove ads" is added)
 • Contains ads: YES
-Expect a 12+ / Teen style rating. Earlier versions with betting chips were rated 18+ and refused in South Korea.
+Expect a Teen / 12+ style rating because of simulated gambling.
 
 ## Data safety form – suggested answers
 • Does the app collect or share user data? YES, through the Google AdMob SDK (nothing is sent to the developer).
