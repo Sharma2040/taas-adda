@@ -94,7 +94,7 @@ Play needs an **App Bundle (.aab)** signed with your private upload key, from `t
    - **App access**: all features available without login.
    - **Ads**: **Yes, my app contains ads**.
    - **Content rating**: answer honestly. **Yes** to simulated gambling (pretend chips in Teen Patti, Flash, Kitti), **yes** to users interacting (nearby chat), **yes** to sharing location (SOS, only when the user chooses), **no** real-money gambling. Expect a Teen / 12+ rating.
-   - **Target audience**: 13 and over. Do **not** opt into *Designed for Families*.
+   - **Target audience**: 18 and over (the content rating is 18+ in most countries, and South Korea refuses it, so leave South Korea out of every release). Do **not** opt into *Designed for Families*.
    - **Data safety**: use the answers in `store/listing.md`, which include what the AdMob SDK collects (advertising ID, approximate location, app interactions, diagnostics).
    - **Government app, financial features, health**: No.
 3. **Store settings → contact details**: your email, and website **`https://sharma2040.github.io`** (AdMob reads `app-ads.txt` from here).

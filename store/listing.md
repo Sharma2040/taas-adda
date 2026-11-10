@@ -64,7 +64,8 @@ Developer website (needed for AdMob app-ads.txt): https://sharma2040.github.io
 • Shares user location with other users: YES (only the SOS feature, when the user chooses)
 • Digital purchases: No (until "Remove ads" is added)
 • Contains ads: YES
-Expect a Teen / 12+ style rating because of simulated gambling.
+Result (11 Nov 2026): 18+ in most countries (IARC 18+, PEGI 18, Australia R18+, ESRB Teen) and refused by GRAC in South Korea.
+→ Target audience: 18 and over only. Leave South Korea out of every track (testing and production).
 
 ## Data safety form – suggested answers
 • Does the app collect or share user data? YES, through the Google AdMob SDK (nothing is sent to the developer).
